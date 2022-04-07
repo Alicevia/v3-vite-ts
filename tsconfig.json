@@ -36,6 +36,7 @@
   },
   "include": [
     "src/**/*",
+    "vite"
   ],
   "references": [
     {
