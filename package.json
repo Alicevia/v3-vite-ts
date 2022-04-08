@@ -12,6 +12,8 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@vueuse/core": "^8.2.5",
+    "@vueuse/integrations": "^8.2.5",
     "axios": "^0.26.1",
     "naive-ui": "^2.27.0",
     "pinia": "^2.0.13",
