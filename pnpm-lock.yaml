@@ -16,6 +16,7 @@ specifiers:
   eslint-plugin-prettier: ^4.0.0
   eslint-plugin-promise: ^6.0.0
   eslint-plugin-vue: ^8.5.0
+  lodash: ^4.17.21
   naive-ui: ^2.27.0
   pinia: ^2.0.13
   prettier: ^2.6.2
@@ -35,6 +36,7 @@ dependencies:
   '@vueuse/core': registry.npmmirror.com/@vueuse/core/8.2.5_vue@3.2.31
   '@vueuse/integrations': registry.npmmirror.com/@vueuse/integrations/8.2.5_axios@0.26.1+vue@3.2.31
   axios: registry.npmmirror.com/axios/0.26.1
+  lodash: registry.npmmirror.com/lodash/4.17.21
   naive-ui: registry.npmmirror.com/naive-ui/2.27.0_vue@3.2.31
   pinia: registry.npmmirror.com/pinia/2.0.13_typescript@4.6.3+vue@3.2.31
   vue: registry.npmmirror.com/vue/3.2.31

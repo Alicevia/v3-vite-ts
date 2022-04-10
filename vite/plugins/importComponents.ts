@@ -8,10 +8,13 @@ export default () => {
       imports: [
         'vue',
         'vue-router',
+        '@vueuse/core',
         // 'vue-i18n',
         // 'vue/macros',
         // '@vueuse/head',
-        // '@vueuse/core',
+        // 'axios': [
+        //   ['default', 'axios'], // import { default as axios } from 'axios',
+        // ],
       ],
       dts: 'src/components.d.ts',
       eslintrc: {
