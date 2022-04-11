@@ -15,6 +15,7 @@
     "@vueuse/core": "^8.2.5",
     "@vueuse/integrations": "^8.2.5",
     "axios": "^0.26.1",
+    "koa-compose": "^4.1.0",
     "lodash": "^4.17.21",
     "naive-ui": "^2.27.0",
     "pinia": "^2.0.13",
@@ -22,6 +23,7 @@
     "vue-router": "^4.0.14"
   },
   "devDependencies": {
+    "@types/koa-compose": "^3.2.5",
     "@types/node": "^17.0.23",
     "@typescript-eslint/eslint-plugin": "^5.18.0",
     "@typescript-eslint/parser": "^5.18.0",

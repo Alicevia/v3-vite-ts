@@ -6,7 +6,6 @@ const routes: RouteRecordRaw[] = []
 flatRoutes.forEach((v) => {
   routes.push(v?.meta?.layout !== false ? setupLayouts([v])[0] : v)
 })
-console.log(routes)
 const router = createRouter({
   history: createWebHistory(),
   routes,
