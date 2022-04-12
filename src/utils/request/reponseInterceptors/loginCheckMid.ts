@@ -1,4 +1,4 @@
-import { MessageTip } from '@/utils/messageTip'
+import { createError } from './../../messageTip'
 import type { AxiosResponse } from 'axios'
 import type { Middleware } from 'koa-compose'
 
@@ -11,5 +11,5 @@ export const loginCheckMid = async (
   if (code === 401) {
     // logout?
   }
-  return Promise.reject(new Error(MessageTip[code], { cause: response }))
+  return Promise.reject(createError(response))
 }

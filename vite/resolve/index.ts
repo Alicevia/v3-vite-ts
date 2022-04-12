@@ -8,6 +8,7 @@ export default function resolveFn() {
       api: path.resolve('./src/api'),
       hooks: path.resolve('./src/hooks'),
       store: path.resolve('./src/store'),
+      utils: path.resolve('./src/utils'),
     },
   }
 }
