@@ -4,8 +4,13 @@
 
 declare module 'vue' {
   export interface GlobalComponents {
+    AppProvider: typeof import('./components/Application/AppProvider.vue')['default']
     Dialog: typeof import('./views/home/components/dialog.vue')['default']
-    ScrollList: typeof import('./components/ScrollList.vue')['default']
+    NConfigProvider: typeof import('naive-ui')['NConfigProvider']
+    NDialogProvider: typeof import('naive-ui')['NDialogProvider']
+    NLoadingBarProvider: typeof import('naive-ui')['NLoadingBarProvider']
+    NMessageProvider: typeof import('naive-ui')['NMessageProvider']
+    NNotificationProvider: typeof import('naive-ui')['NNotificationProvider']
   }
 }
 

@@ -1,8 +1,9 @@
-import { loginExpireMid } from './loginExpireMid'
+import { loginCheckMid } from './loginCheckMid'
 import compose from 'koa-compose'
 import { backResponse } from './backResponseMid'
+import { errorDisplayMid } from './errorDisplayMid'
 
-const responseResolve = koaCompose([loginExpireMid, backResponse])
+const responseResolve = compose([errorDisplayMid, loginCheckMid, backResponse])
 
 export { responseResolve }
 
