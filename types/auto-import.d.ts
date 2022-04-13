@@ -4,8 +4,8 @@
 
 declare module 'vue' {
   export interface GlobalComponents {
-    AppProvider: typeof import('./components/Application/AppProvider.vue')['default']
-    Dialog: typeof import('./views/home/components/dialog.vue')['default']
+    AppProvider: typeof import('./../src/components/Application/AppProvider.vue')['default']
+    Dialog: typeof import('./../src/views/home/components/dialog.vue')['default']
     NConfigProvider: typeof import('naive-ui')['NConfigProvider']
     NDialogProvider: typeof import('naive-ui')['NDialogProvider']
     NLoadingBarProvider: typeof import('naive-ui')['NLoadingBarProvider']

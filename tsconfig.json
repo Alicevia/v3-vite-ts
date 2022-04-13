@@ -39,7 +39,8 @@
   },
   "include": [
     "src/**/*",
-    "vite"
+    "build/vite",
+    "types/**.d.ts"
   ],
   "references": [
     {

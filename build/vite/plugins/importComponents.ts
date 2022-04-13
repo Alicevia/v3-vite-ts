@@ -16,7 +16,7 @@ export default () => {
         //   ['default', 'axios'], // import { default as axios } from 'axios',
         // ],
       ],
-      dts: 'src/components.d.ts',
+      dts: 'types/components.d.ts',
       eslintrc: {
         enabled: true, // Default `false`
         filepath: './.eslintrc-auto-import.json',
@@ -25,7 +25,7 @@ export default () => {
     }),
     Components({
       dirs: ['src/**/components'],
-      dts: 'src/auto-import.d.ts',
+      dts: 'types/auto-import.d.ts',
       extensions: ['vue'],
       resolvers: [NaiveUiResolver()],
       include: [/\.vue$/, /\.vue\?vue/],

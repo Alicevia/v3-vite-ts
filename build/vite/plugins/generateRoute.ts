@@ -9,7 +9,7 @@ export default () => {
       exclude: ['**/components/*.vue'],
     }),
     Layouts({
-      layoutsDirs: 'src/layout',
+      layoutsDirs: 'src/layouts',
       defaultLayout: 'default',
     }),
   ]
