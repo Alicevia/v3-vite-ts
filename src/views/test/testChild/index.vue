@@ -1,7 +1,5 @@
 <template>
-  <BasicLayout>
-    <router-view></router-view>
-  </BasicLayout>
+  <div>test-child</div>
 </template>
 
 <script setup lang="ts"></script>

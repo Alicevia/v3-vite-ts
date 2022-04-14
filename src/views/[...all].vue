@@ -5,7 +5,3 @@ interface allProps {
 }
 const props = defineProps<allProps>()
 </script>
-<route lang="yaml">
-meta:
-  layout: 404
-</route>

@@ -5,10 +5,18 @@
 declare module 'vue' {
   export interface GlobalComponents {
     AppProvider: typeof import('./../src/components/Application/AppProvider.vue')['default']
+    BasicLayout: typeof import('./../src/layouts/components/BasicLayout/BasicLayout.vue')['default']
     Dialog: typeof import('./../src/views/home/components/dialog.vue')['default']
+    Menus: typeof import('./../src/components/Menus/Menus.vue')['default']
+    NButton: typeof import('naive-ui')['NButton']
     NConfigProvider: typeof import('naive-ui')['NConfigProvider']
     NDialogProvider: typeof import('naive-ui')['NDialogProvider']
+    NLayout: typeof import('naive-ui')['NLayout']
+    NLayoutFooter: typeof import('naive-ui')['NLayoutFooter']
+    NLayoutHeader: typeof import('naive-ui')['NLayoutHeader']
+    NLayoutSider: typeof import('naive-ui')['NLayoutSider']
     NLoadingBarProvider: typeof import('naive-ui')['NLoadingBarProvider']
+    NMenu: typeof import('naive-ui')['NMenu']
     NMessageProvider: typeof import('naive-ui')['NMessageProvider']
     NNotificationProvider: typeof import('naive-ui')['NNotificationProvider']
   }
