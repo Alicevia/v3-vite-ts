@@ -1,14 +1,9 @@
 import type { AxiosResponse } from 'axios'
 import { loginCheckMid } from './loginCheckMid'
 import compose from 'koa-compose'
-import { backResponse } from './backResponseMid'
 import { errorDisplayMid } from './errorDisplayMid'
 
-const responseResolve = compose<AxiosResponse>([
-  errorDisplayMid,
-  loginCheckMid,
-  backResponse,
-])
+const responseResolve = compose<AxiosResponse>([errorDisplayMid, loginCheckMid])
 
 export { responseResolve }
 

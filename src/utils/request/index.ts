@@ -9,7 +9,14 @@ axios.defaults.timeout = 10000
 axios.interceptors.request.use(requestResolve, (e) => {
   return Promise.reject(e)
 })
-axios.interceptors.response.use(responseResolve, (e: AxiosError) => {
-  $message.error(e.message || 'network is so slow')
-  return Promise.reject(createError(e))
-})
+axios.interceptors.response.use(
+  async (response) => {
+    return await responseResolve(response)
+      .then(() => response)
+      .catch(() => Promise.reject(createError(response)))
+  },
+  (e: AxiosError) => {
+    $message.error(e.message || 'network is so slow')
+    return Promise.reject(createError(e))
+  },
+)
