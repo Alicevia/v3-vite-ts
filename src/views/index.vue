@@ -10,7 +10,3 @@ const { data: data2, error: error2 } = getTest2Json()
 console.log({ data2, error2 })
 </script>
 <style lang="scss" scoped></style>
-<route lang="yaml">
-meta:
-  layout: 'default'
-</route>

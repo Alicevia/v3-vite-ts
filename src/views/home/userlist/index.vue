@@ -1,5 +1,5 @@
 <template>
-  <div>123</div>
+  <div>我是/home/userlist 我没用使用homelayout</div>
 </template>
 
 <script lang="ts" setup></script>

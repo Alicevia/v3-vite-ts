@@ -1,11 +1,7 @@
 import { createError } from './../../messageTip'
 import type { AxiosResponse } from 'axios'
-import type { Middleware } from 'koa-compose'
 
-export const loginCheckMid = async (
-  response: AxiosResponse,
-  next: Middleware,
-) => {
+export const loginCheckMid = async (response: AxiosResponse, next: any) => {
   const { code } = response.data
   if (code === 0) return await next()
   if (code === 401) {

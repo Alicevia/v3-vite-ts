@@ -1,5 +1,5 @@
 <template>
-  <div>login</div>
+  <div>login 不需要使用defaultlayout</div>
 </template>
 
 <script setup></script>

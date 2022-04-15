@@ -6,5 +6,5 @@
 <style lang="scss" scoped></style>
 <route lang="yaml">
 meta:
-  layout: home
+  extendLayout: home
 </route>
