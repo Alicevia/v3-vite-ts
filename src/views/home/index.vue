@@ -7,3 +7,6 @@
 
 <script setup lang="ts"></script>
 <style lang="scss" scoped></style>
+<route lang="yaml">
+redirect: /home/userlist
+</route>
