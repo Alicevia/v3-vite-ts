@@ -7,4 +7,5 @@
 <route lang="yaml">
 meta:
   extendLayout: home
+  key: profile
 </route>

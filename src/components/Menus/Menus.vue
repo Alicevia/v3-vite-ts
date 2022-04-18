@@ -21,14 +21,11 @@
 </template>
 
 <script setup lang="ts">
-import { defineComponent, h, ref, Component } from 'vue'
+import { h, ref, Component } from 'vue'
 import { NIcon } from 'naive-ui'
 import type { MenuOption } from 'naive-ui'
-import {
-  BookOutline as BookIcon,
-  PersonOutline as PersonIcon,
-  WineOutline as WineIcon,
-} from '@vicons/ionicons5'
+import { BookOutline as BookIcon } from '@vicons/ionicons5'
+import useAppStore from 'store/app'
 const activeKey = ref(null)
 const collapsed = ref(false)
 function renderIcon(icon: Component) {
@@ -42,14 +39,30 @@ function renderIcon(icon: Component) {
 //     extra?: string | (() => VNodeChild);
 //     props?: HTMLAttributes;
 //     [key: string]: unknown;
-//     /** @deprecated */
-//     titleExtra?: string | (() => VNodeChild);
-
 const menuOptions: MenuOption[] = [
   {
     label: '且听风吟',
     key: 'hear-the-wind-sing',
     icon: renderIcon(BookIcon),
+  },
+]
+const appStore = useAppStore()
+console.log(appStore.originRoutes)
+const menu = [
+  {
+    label: '首页',
+    key: 'home',
+    icon: 'home',
+    children: [
+      { label: '个人中心', key: 'profile', icon: 'profile' },
+      { label: '用户列表', key: 'userlist', icon: 'userlist' },
+    ],
+  },
+  {
+    label: '测试',
+    key: 'testchild',
+    icon: 'testchild',
+    children: [{ label: '测试子', key: 'testchild', icon: 'testchild' }],
   },
 ]
 </script>

@@ -6,7 +6,7 @@
     <n-layout position="absolute" style="top: 64px; bottom: 64px" has-sider>
       <Menus></Menus>
       <n-layout
-        content-style="display:flex;height:100%;background-color:pink"
+        content-style="display:flex;height:100%"
         :native-scrollbar="false"
       >
         <slot></slot>

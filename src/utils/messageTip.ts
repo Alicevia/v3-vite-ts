@@ -9,7 +9,7 @@ export const MessageTip: MessageTip = {
 }
 export const createError = (response: AxiosError | AxiosResponse) => {
   if (response instanceof Error) {
-    return new Error(response.message, {
+    throw new Error(response.message, {
       cause: {
         ...response.response,
         name: response.config.url as string,
@@ -18,7 +18,7 @@ export const createError = (response: AxiosError | AxiosResponse) => {
     })
   } else {
     const { code } = response.data || {}
-    return new Error(MessageTip[code], {
+    throw new Error(MessageTip[code], {
       cause: {
         ...response,
         name: response.config.url as string,

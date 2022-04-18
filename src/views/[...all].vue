@@ -5,3 +5,8 @@ interface allProps {
 }
 const props = defineProps<allProps>()
 </script>
+
+<route lang="yaml">
+meta:
+  isMenu: false
+</route>

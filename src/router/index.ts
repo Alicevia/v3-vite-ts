@@ -1,15 +1,14 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import type { RouteRecordRaw } from 'vue-router'
 import flatRoutes from 'virtual:generated-pages'
-import a from '~pages'
 import { setupLayouts } from 'virtual:generated-layouts'
-console.log('flatRoutes', a)
 const routes: RouteRecordRaw[] = flatRoutes.reduce(
   (pre: RouteRecordRaw[], v: RouteRecordRaw) => {
     if (v.meta && v.meta.layout === false) {
       pre.push(v)
     } else {
       const item = setupLayouts([v])[0]
+
       const extendLayout = v.meta?.extendLayout
       if (extendLayout) {
         const layoutRoute = flatRoutes.find(
@@ -30,8 +29,7 @@ const routes: RouteRecordRaw[] = flatRoutes.reduce(
   [],
 )
 
-console.log(routes)
-
+console.log({ flatRoutes, routes })
 const router = createRouter({
   history: createWebHistory(),
   routes,

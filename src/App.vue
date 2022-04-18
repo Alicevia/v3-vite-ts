@@ -1,5 +1,5 @@
 <template>
-  <n-config-provider>
+  <n-config-provider :theme="darkTheme">
     <n-loading-bar-provider>
       <n-dialog-provider>
         <n-notification-provider>
@@ -14,6 +14,7 @@
 </template>
 <script setup>
 import AppGlobalSetting from '@/settings/AppGlobalSetting'
+import { darkTheme } from 'naive-ui'
 </script>
 <script>
 export default {
