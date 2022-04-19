@@ -2,16 +2,38 @@ import type { ResponseData } from './../../types/response.d'
 import { useAxios } from '@vueuse/integrations/useAxios'
 import { defineStore } from 'pinia'
 import originRoutes from 'virtual:generated-pages'
-
-const useAppStore = defineStore({
+import type { RouteRecordRaw } from 'vue-router'
+interface RouteMap {
+  [key: string]: RouteRecordRaw
+}
+interface AppStore {
+  originMenu: RouteRecordRaw[]
+  routeMap: RouteMap
+  menuAuth: Array<string>
+}
+const useAppStore = defineStore<string, AppStore>({
   id: 'app',
   state() {
     return {
-      originRoutes: originRoutes.filter(
+      routeMap: originRoutes.reduce((pre, route) => {
+        const key: string = route.meta?.key as string
+        if (key) pre[key] = route
+        return pre
+      }, {} as RouteMap),
+      originMenu: originRoutes.filter(
         (item) => !(item.meta && item.meta.isMenu === false),
       ),
-      menuAuth: [] as string[],
+      menuAuth: [],
     }
+  },
+  getters: {
+    userMenuList() {
+      const userRoute = this.menuAuth.reduce((pre, item) => {
+        const route = this.routeMap[item]
+        if (route) pre.push(route)
+        return pre
+      }, [])
+    },
   },
   actions: {
     async getMenuAuth() {
