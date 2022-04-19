@@ -8,10 +8,15 @@
 
 <script setup lang="ts">
 import useAppStore from 'store/app'
+import { getTestJson } from '@/api/test'
+const { data, error } = getTestJson()
+console.log({ data, error })
 
 const appStore = useAppStore()
 const handleLogin = () => {
-  appStore.getMenuAuth()
+  appStore.getMenuAuth().catch((e) => {
+    console.log(e)
+  })
 }
 </script>
 <style lang="scss" scoped></style>
