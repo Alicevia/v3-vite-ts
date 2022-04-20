@@ -1,3 +1,4 @@
+import type { AxiosResponse } from 'axios'
 import type { ResponseData } from './../../types/response.d'
 import { useAxios } from '@vueuse/integrations/useAxios'
 import { defineStore } from 'pinia'
@@ -6,12 +7,19 @@ import type { RouteRecordRaw } from 'vue-router'
 interface RouteMap {
   [key: string]: RouteRecordRaw
 }
-interface AppStore {
+interface AppState {
   originMenu: RouteRecordRaw[]
   routeMap: RouteMap
   menuAuth: Array<string>
 }
-const useAppStore = defineStore<string, AppStore>({
+
+interface AppGetters {
+  [key: string]: any
+}
+interface AppActions {
+  getMenuAuth: () => Promise
+}
+const useAppStore = defineStore<string, AppState, AppGetters, AppActions>({
   id: 'app',
   state() {
     return {
@@ -37,7 +45,7 @@ const useAppStore = defineStore<string, AppStore>({
   },
   actions: {
     async getMenuAuth() {
-      const { data, error } = await useAxios<ResponseData>('/public1/auth.json')
+      const { data, error } = await useAxios<ResponseData>('/public/auth.json')
       if (error.value) {
         return Promise.reject(error.value)
       } else {

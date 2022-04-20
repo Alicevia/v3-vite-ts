@@ -13,6 +13,7 @@ const abc = {
 <style lang="scss" scoped></style>
 <route lang="yaml">
 meta:
-  key: 'home'
+  key: home
+  isMenu: false
 redirect: /home/userlist
 </route>
