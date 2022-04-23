@@ -7,6 +7,10 @@ export default () => {
       dirs: [{ dir: 'src/views', baseRoute: '' }],
       importMode: 'async',
       exclude: ['**/components/*.vue'],
+      extendRoute(route, parent) {
+        console.log(route.name, route.meta?.key)
+      },
+      routeBlockLang: 'yaml',
     }),
     Layouts({
       layoutsDirs: 'src/layouts',

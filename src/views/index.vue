@@ -1,7 +1,6 @@
 <template>
-  <div flex grow>
-    <n-button>123</n-button>
-  </div>
+  index
+  <router-view></router-view>
 </template>
 
 <script setup lang="ts"></script>
@@ -10,4 +9,5 @@
 <route lang="yaml">
 meta:
   isMenu: false
+  key: 1
 </route>

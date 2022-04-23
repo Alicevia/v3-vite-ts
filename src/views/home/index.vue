@@ -1,19 +1,10 @@
 <template>
-  <div>
-    <div>home1的layout</div>
-    <router-view></router-view>
-  </div>
+  <div>home - index</div>
 </template>
 
-<script setup lang="ts">
-const abc = {
-  name: 'home',
-}
-</script>
+<script setup lang="ts"></script>
 <style lang="scss" scoped></style>
 <route lang="yaml">
 meta:
-  key: home
-  isMenu: false
-redirect: /home/userlist
+  key: 4
 </route>

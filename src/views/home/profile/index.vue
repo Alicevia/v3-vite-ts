@@ -6,6 +6,5 @@
 <style lang="scss" scoped></style>
 <route lang="yaml">
 meta:
-  extendLayout: home
-  key: profile
+  key: 6
 </route>

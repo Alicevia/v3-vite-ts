@@ -6,5 +6,5 @@
 <style lang="scss" scoped></style>
 <route lang="yaml">
 meta:
-  key: test
+  key: 7
 </route>

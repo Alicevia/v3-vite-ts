@@ -1,10 +1,9 @@
 <template>
-  <div>test-child</div>
+  <div>
+    test layout
+    <router-view></router-view>
+  </div>
 </template>
 
 <script setup lang="ts"></script>
 <style lang="scss" scoped></style>
-<route lang="yaml">
-meta:
-  key: 8
-</route>
