@@ -8,5 +8,5 @@ const props = defineProps<allProps>()
 
 <route lang="yaml">
 meta:
-  isMenu: false
+  title: 404
 </route>

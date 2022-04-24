@@ -23,5 +23,5 @@ const handleLogin = () => {
 <route lang="yaml">
 meta:
   layout: false
-  isMenu: false
+  title: 登录
 </route>

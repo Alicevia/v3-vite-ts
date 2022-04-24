@@ -6,5 +6,7 @@
 <style lang="scss" scoped></style>
 <route lang="yaml">
 meta:
-  key: 5
+  id: 5
+  title: 用户列表
+  icon: AirplaneSharp
 </route>
