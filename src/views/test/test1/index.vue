@@ -1,0 +1,12 @@
+<template>
+  <div>test1</div>
+</template>
+
+<script setup lang="ts"></script>
+<style lang="scss" scoped></style>
+<route lang="yaml">
+meta:
+  id: 15
+  title: test1
+  icon: AccessibilitySharp
+</route>

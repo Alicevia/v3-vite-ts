@@ -25,11 +25,11 @@
 import { ref } from 'vue'
 
 import useAppStore from 'store/app'
-const router = useRouter()
+const route = useRoute()
 const expandedKeys = ref([])
-const activeKey = ref<string | number>()
+const activeKey = ref(route.name)
 const collapsed = ref(false)
-
+console.log(route)
 //  key?: Key;
 //     disabled?: boolean;
 //     icon?: () => VNodeChild;
@@ -40,13 +40,5 @@ const collapsed = ref(false)
 
 const appStore = useAppStore()
 console.log(appStore.originMenu)
-watch(
-  router.currentRoute,
-  (v) => {
-    activeKey.value = v.name
-    console.log(v, expandedKeys.value)
-  },
-  { immediate: true },
-)
 </script>
 <style lang="scss" scoped></style>

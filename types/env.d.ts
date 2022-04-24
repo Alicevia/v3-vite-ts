@@ -28,9 +28,9 @@ declare global {
 
 declare module 'vue-router' {
   interface RouteMeta extends MenuOption {
-    id?: number | string
+    id?: number
     //
-    key?: RouteRecordName | string
+    key?: RouteRecordName
     // router menu name
     title?: string
     // menu icon
