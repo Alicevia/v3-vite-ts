@@ -12,8 +12,10 @@ const abc = {
 </script>
 <style lang="scss" scoped></style>
 <route lang="yaml">
+redirect: 6
 meta:
   key: 4
   title: 首页
+  sort: 1
   icon: AccessibilitySharp
 </route>

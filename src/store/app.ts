@@ -29,7 +29,7 @@ const useAppStore = defineStore<string, AppState, AppGetters, AppActions>({
   state() {
     return {
       routeMap: originRoutes.reduce((pre, route) => {
-        const key: string = route.meta?.key as string
+        const key: number = route.meta?.key as number
         if (key) pre[key] = route
         return pre
       }, {} as RouteMap),
@@ -60,15 +60,15 @@ const useAppStore = defineStore<string, AppState, AppGetters, AppActions>({
 function generateOriginMenu(routes: RouteRecordRaw[]): MenuOption[] {
   return routes.reduce((pre, route: RouteRecordRaw) => {
     const { title, key, icon } = route.meta ?? {}
-    let temp: MenuOption = {}
+    const temp: MenuOption = {}
     if (key && route.name && title && icon) {
-      temp = {
-        label: route.path ? renderLabel(route.name, title) : title,
-        key,
-        icon: renderIcon(icon),
-      }
+      temp.key = key
+      temp.icon = renderIcon(icon)
       if (route.children) {
         temp.children = generateOriginMenu(route.children)
+        temp.label = title
+      } else {
+        temp.label = renderLabel(route.name, title)
       }
     } else {
       return pre

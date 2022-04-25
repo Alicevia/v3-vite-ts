@@ -1,14 +1,14 @@
 <template>
-  <div><router-view></router-view></div>
+  <div>s</div>
 </template>
 
 <script setup lang="ts"></script>
 <style lang="scss" scoped></style>
+
 <route lang="yaml">
-redirect: 15
 meta:
-  key: 11
-  title: 测试
-  sort: 2
+  title: 测试中心
+  key: 16
   icon: AccessibilitySharp
+  sort: 0
 </route>

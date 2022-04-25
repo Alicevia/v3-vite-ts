@@ -7,5 +7,6 @@
 meta:
   title: 主页
   key: 1
+  sort: 0
   icon: BalloonSharp
 </route>
