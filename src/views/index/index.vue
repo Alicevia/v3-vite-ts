@@ -6,6 +6,6 @@
 <route lang="yaml">
 meta:
   title: 主页
-  id: 1
+  key: 1
   icon: BalloonSharp
 </route>

@@ -1,11 +1,11 @@
 /// <reference types="vite/client" />
 /// <reference types="vite-plugin-pages/client" />
 
-import { MentionOption } from 'naive-ui'
+import type { MenuOption } from 'naive-ui'
 import type { DialogApiInjection } from 'naive-ui/lib/dialog/src/DialogProvider'
 import { LoadingBarApiInjection } from 'naive-ui/lib/loading-bar/src/LoadingBarProvider'
 import type { MessageApiInjection } from 'naive-ui/lib/message/src/MessageProvider'
-import type { Component } from 'vue'
+import type { VNode } from 'vue'
 import 'vue-router'
 
 declare module '*.vue' {
@@ -27,13 +27,10 @@ declare global {
 }
 
 declare module 'vue-router' {
-  interface RouteMeta extends MenuOption {
-    id?: number
-    //
-    key?: RouteRecordName
-    // router menu name
+  interface RouteMeta {
+    key?: string
     title?: string
-    // menu icon
-    icon?: string | (() => Component)
+    icon?: string
+    [k: string]: unknown
   }
 }

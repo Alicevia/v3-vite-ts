@@ -6,7 +6,7 @@
 <style lang="scss" scoped></style>
 <route lang="yaml">
 meta:
-  id: 6
+  key: 6
   title: 个人中心
   icon: Alarm
 </route>

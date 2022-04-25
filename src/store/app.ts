@@ -58,21 +58,17 @@ const useAppStore = defineStore<string, AppState, AppGetters, AppActions>({
   },
 })
 function generateOriginMenu(routes: RouteRecordRaw[]): MenuOption[] {
-  return routes.reduce((pre, route) => {
-    const { title, id, icon } = route.meta ?? {}
+  return routes.reduce((pre, route: RouteRecordRaw) => {
+    const { title, key, icon } = route.meta ?? {}
     let temp: MenuOption = {}
-    if (id && route.name && title && icon) {
+    if (key && route.name && title && icon) {
       temp = {
-        label: renderLabel(route.name, title),
-        key: route.name as string,
-        icon: renderIcon(icon as string),
-        id,
+        label: route.path ? renderLabel(route.name, title) : title,
+        key,
+        icon: renderIcon(icon),
       }
-    } else if (route.children) {
-      const [a, ...rest] = generateOriginMenu(route.children)
-      if (a) {
-        temp = { ...a }
-        temp.children = rest
+      if (route.children) {
+        temp.children = generateOriginMenu(route.children)
       }
     } else {
       return pre

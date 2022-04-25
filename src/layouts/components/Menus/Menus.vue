@@ -26,8 +26,8 @@ import { ref } from 'vue'
 
 import useAppStore from 'store/app'
 const route = useRoute()
-const expandedKeys = ref([])
-const activeKey = ref(route.name)
+const expandedKeys = ref(route.matched.map((route) => route.meta.key))
+const activeKey = ref(route.meta.key)
 const collapsed = ref(false)
 console.log(route)
 //  key?: Key;

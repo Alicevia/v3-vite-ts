@@ -7,7 +7,7 @@ declare module 'vue' {
     AppProvider: typeof import('./../src/components/Application/AppProvider.vue')['default']
     BasicLayout: typeof import('./../src/layouts/components/BasicLayout/BasicLayout.vue')['default']
     Dialog: typeof import('./../src/views/home/components/dialog.vue')['default']
-    Menus: typeof import('./../src/components/Menus/Menus.vue')['default']
+    Menus: typeof import('./../src/layouts/components/Menus/Menus.vue')['default']
     NConfigProvider: typeof import('naive-ui')['NConfigProvider']
     NDialogProvider: typeof import('naive-ui')['NDialogProvider']
     NLayout: typeof import('naive-ui')['NLayout']

@@ -6,7 +6,7 @@
 <style lang="scss" scoped></style>
 <route lang="yaml">
 meta:
-  id: 15
+  key: 15
   title: test1
   icon: AccessibilitySharp
 </route>
