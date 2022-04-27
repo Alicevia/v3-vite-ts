@@ -22,16 +22,17 @@ export default () => {
         // return route
       },
       onRoutesGenerated(routes) {
-        routes.sort((a, b) => {
-          return a.meta.sort - b.meta.sort
-        })
-        routes.forEach((route) => {
-          if (route.children) {
-            route.children.sort((a, b) => {
-              return a.meta.sort - b.meta.sort
-            })
-          }
-        })
+        function sortRoute(routes) {
+          routes.sort((a, b) => {
+            return a.meta.sort - b.meta.sort
+          })
+          routes.forEach((route) => {
+            if (route.children) {
+              sortRoute(route.children)
+            }
+          })
+        }
+        sortRoute(routes)
         return routes
       },
       routeBlockLang: 'yaml',

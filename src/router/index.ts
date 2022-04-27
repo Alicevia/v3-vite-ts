@@ -15,7 +15,6 @@ const routes = flatRoutes.reduce(
   [],
 )
 
-console.log({ flatRoutes, routes })
 const router = createRouter({
   history: createWebHistory(),
   routes,
