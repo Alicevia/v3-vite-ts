@@ -1,22 +1,20 @@
+import { baseRoutes } from './routes'
 import { createRouter, createWebHistory } from 'vue-router'
-import type { RouteRecordRaw } from 'vue-router'
-import flatRoutes from 'virtual:generated-pages'
-import { setupLayouts } from 'virtual:generated-layouts'
-
-const routes = flatRoutes.reduce(
-  (pre: RouteRecordRaw[], route: RouteRecordRaw) => {
-    if (route.meta && route.meta.layout === false) {
-      pre.push(route)
-    } else {
-      pre.push(...setupLayouts([route]))
-    }
-    return pre
-  },
-  [],
-)
+import useUserStore from 'store/user'
+import { WHITE_LIST } from '@/enums'
 
 const router = createRouter({
   history: createWebHistory(),
-  routes,
+  routes: baseRoutes,
+})
+router.beforeEach((to, from, next) => {
+  console.log(to)
+  if (WHITE_LIST.includes(to.meta.key)) return next()
+  const { token } = useUserStore()
+  if (token) {
+    next()
+  } else {
+    next({ name: 'login' })
+  }
 })
 export default router

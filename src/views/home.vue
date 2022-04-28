@@ -14,7 +14,7 @@ const abc = {
 <route lang="yaml">
 redirect: 6
 meta:
-  key: 4
+  key: 2
   title: 首页
   sort: 1
   icon: AccessibilitySharp

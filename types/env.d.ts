@@ -19,7 +19,7 @@ declare global {
 
 declare module 'vue-router' {
   interface RouteMeta {
-    key?: number
+    key: number
     title?: string
     icon?: string
     sort?: number

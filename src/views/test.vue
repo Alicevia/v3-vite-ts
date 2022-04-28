@@ -7,7 +7,7 @@
 <route lang="yaml">
 redirect: 15
 meta:
-  key: 11
+  key: 3
   title: 测试
   sort: 2
   icon: AccessibilitySharp

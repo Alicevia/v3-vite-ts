@@ -8,7 +8,7 @@
 <route lang="yaml">
 meta:
   title: 测试中心
-  key: 16
+  key: 8
   icon: AccessibilitySharp
   sort: 0
 </route>

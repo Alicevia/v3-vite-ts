@@ -20,10 +20,12 @@
 </template>
 <script setup lang="ts">
 interface allProps {
-  all: string[]
+  all: Array<string>
 }
 
-const props = defineProps<allProps>()
+const props = defineProps({
+  all: Array,
+})
 </script>
 <style lang="scss" scoped>
 .result {
@@ -36,6 +38,7 @@ const props = defineProps<allProps>()
 </style>
 <route lang="yaml">
 meta:
+  key: 7
   title: 404
   layout: false
 </route>

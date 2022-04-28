@@ -1,80 +1,56 @@
-import { renderIcon } from 'hooks/components/icon'
-import type { AxiosResponse } from 'axios'
-import type { ResponseData } from './../../types/response.d'
-import { useAxios } from '@vueuse/integrations/useAxios'
+import useUserStore from 'store/user'
 import { defineStore } from 'pinia'
-import originRoutes from 'virtual:generated-pages'
 import type { RouteRecordRaw } from 'vue-router'
 import type { MenuOption } from 'naive-ui'
-import { renderLabel } from 'hooks/components/menu'
-
-interface RouteMap {
-  [key: string]: RouteRecordRaw
-}
+import {
+  baseRoutes,
+  generateUserMenuFromRoutes,
+  generateUserRouteByAuth,
+  routes,
+  setLayouts,
+} from '@/router/routes'
+import router from '@/router'
 
 interface AppState {
-  originMenu: MenuOption[]
-  routeMap: RouteMap
-  menuAuth: Array<string>
+  baseRoutes: RouteRecordRaw[]
+  menuAuth: Array<number>
 }
 
 interface AppGetters {
-  [key: string]: any
+  userRoutes: RouteRecordRaw[]
+  userMenuList: MenuOption[]
 }
 interface AppActions {
-  getMenuAuth: () => Promise<MenuOption[]>
+  initRoutes: () => void
 }
 const useAppStore = defineStore<string, AppState, AppGetters, AppActions>({
   id: 'app',
   state() {
     return {
-      routeMap: originRoutes.reduce((pre, route) => {
-        const key: number = route.meta?.key as number
-        if (key) pre[key] = route
-        return pre
-      }, {} as RouteMap),
-      originMenu: generateOriginMenu(originRoutes),
-      menuAuth: [],
+      baseRoutes: baseRoutes,
     }
   },
   getters: {
+    userRoutes() {
+      const { routesAuth } = useUserStore()
+      return generateUserRouteByAuth(routes, routesAuth)
+    },
     userMenuList() {
-      const userRoute = this.menuAuth.reduce((pre, item) => {
-        const route = this.routeMap[item]
-        if (route) pre.push(route)
-        return pre
-      }, [])
+      return generateUserMenuFromRoutes(
+        this.userRoutes as unknown as RouteRecordRaw[],
+      )
     },
   },
   actions: {
-    async getMenuAuth() {
-      const { data, error } = await useAxios<ResponseData>('/public/auth.json')
-      if (error.value) {
-        return Promise.reject(error.value)
-      } else {
-        this.menuAuth = data.value?.data
-      }
+    initRoutes() {
+      console.log(this)
+      const routes = setLayouts(this.userRoutes)
+      routes.forEach((route: RouteRecordRaw) => {
+        router.addRoute(route)
+      })
+      console.log(router.getRoutes())
     },
   },
 })
-function generateOriginMenu(routes: RouteRecordRaw[]): MenuOption[] {
-  return routes.reduce((pre, route: RouteRecordRaw) => {
-    const { title, key, icon } = route.meta ?? {}
-    const temp: MenuOption = {}
-    if (key && route.name && title && icon) {
-      temp.key = key
-      temp.icon = renderIcon(icon)
-      if (route.children) {
-        temp.children = generateOriginMenu(route.children)
-        temp.label = title
-      } else {
-        temp.label = renderLabel(route.name, title)
-      }
-    } else {
-      return pre
-    }
-    pre.push(temp)
-    return pre
-  }, [] as MenuOption[])
-}
+
 export default useAppStore

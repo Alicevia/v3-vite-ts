@@ -16,7 +16,7 @@
       :collapsed="collapsed"
       :collapsed-width="64"
       :collapsed-icon-size="22"
-      :options="appStore.originMenu"
+      :options="appStore.userMenuList"
     />
   </n-layout-sider>
 </template>
@@ -30,15 +30,7 @@ const expandedKeys = ref(route.matched.map((route) => route.meta.key))
 const activeKey = ref(route.meta.key)
 const collapsed = ref(false)
 console.log(route)
-//  key?: Key;
-//     disabled?: boolean;
-//     icon?: () => VNodeChild;
-//     children?: Array<MenuOption | MenuGroupOption | MenuDividerOption>;
-//     extra?: string | (() => VNodeChild);
-//     props?: HTMLAttributes;
-//     [key: string]: unknown;
 
 const appStore = useAppStore()
-console.log(appStore.originMenu)
 </script>
 <style lang="scss" scoped></style>
