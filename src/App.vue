@@ -12,12 +12,7 @@
     </n-loading-bar-provider>
   </n-config-provider>
 </template>
-<script setup>
+<script setup lang="ts">
 import AppGlobalSetting from '@/settings/AppGlobalSetting'
 import { darkTheme } from 'naive-ui'
-</script>
-<script>
-export default {
-  name: 'App',
-}
 </script>
