@@ -1,4 +1,7 @@
-<template>index</template>
+<template>
+  123
+  <Dialog></Dialog>
+</template>
 
 <script setup lang="ts"></script>
 <style lang="scss" scoped></style>

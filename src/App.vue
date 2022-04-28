@@ -16,3 +16,8 @@
 import AppGlobalSetting from '@/settings/AppGlobalSetting'
 import { darkTheme } from 'naive-ui'
 </script>
+<script lang="ts">
+export default {
+  name: 'App',
+}
+</script>

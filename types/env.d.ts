@@ -1,19 +1,10 @@
 /// <reference types="vite/client" />
 /// <reference types="vite-plugin-pages/client" />
 
-import type { MenuOption } from 'naive-ui'
 import type { DialogApiInjection } from 'naive-ui/lib/dialog/src/DialogProvider'
 import { LoadingBarApiInjection } from 'naive-ui/lib/loading-bar/src/LoadingBarProvider'
 import type { MessageApiInjection } from 'naive-ui/lib/message/src/MessageProvider'
-import type { VNode } from 'vue'
 import 'vue-router'
-
-declare module '*.vue' {
-  import type { DefineComponent } from 'vue'
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any, @typescript-eslint/ban-types
-  const component: DefineComponent<{}, {}, any>
-  export default component
-}
 
 declare global {
   interface Window {
@@ -34,4 +25,10 @@ declare module 'vue-router' {
     sort?: number
     [k: string]: unknown
   }
+}
+declare module '*.vue' {
+  import type { DefineComponent } from 'vue'
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any, @typescript-eslint/ban-types
+  const component: DefineComponent<{}, {}, any>
+  export default component
 }

@@ -24,7 +24,7 @@ export default () => {
       },
     }),
     Components({
-      dirs: ['src/**/components'],
+      dirs: ['src/**/components',],
       dts: 'types/auto-import.d.ts',
       extensions: ['vue'],
       resolvers: [NaiveUiResolver()],

@@ -1,6 +1,6 @@
 {
   "compilerOptions": {
-    "baseUrl": "./",
+    "baseUrl": ".",
     "target": "esnext",
     "useDefineForClassFields": true,
     "module": "esnext",
@@ -42,7 +42,7 @@
   },
   "include": [
     "src/**/*",
-    "types/**.d.ts",
+    "types/*.d.ts",
   ],
   "references": [
     {
