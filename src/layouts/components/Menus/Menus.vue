@@ -24,12 +24,12 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 
-import useAppStore from 'store/app'
+import useRouteStore from 'store/route'
 const route = useRoute()
 const expandedKeys = ref(route.matched.map((route) => route.meta.key))
 const activeKey = ref(route.meta.key)
 const collapsed = ref(false)
 
-const appStore = useAppStore()
+const appStore = useRouteStore()
 </script>
 <style lang="scss" scoped></style>

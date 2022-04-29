@@ -13,32 +13,23 @@ import router from '@/router'
 
 interface AppState {
   baseRoutes: RouteRecordRaw[]
-  menuAuth: Array<number>
-  clearRoutesCbStack: () => void[]
+  clearRoutesCbStack: (() => void)[]
 }
 
-interface AppGetters {
-  userRoutes: RouteRecordRaw[]
-  userMenuList: MenuOption[]
-}
-interface AppActions {
-  initRoutes: () => void
-  clearRoutes: () => void
-}
-const useAppStore = defineStore<string, AppState, AppGetters, AppActions>({
-  id: 'app',
-  state() {
+const useRouteStore = defineStore({
+  id: 'route',
+  state(): AppState {
     return {
       baseRoutes: baseRoutes,
       clearRoutesCbStack: [],
     }
   },
   getters: {
-    userRoutes() {
+    userRoutes(): RouteRecordRaw[] {
       const { routesAuth } = useUserStore()
       return generateUserRouteByAuth(privateRoutes, routesAuth)
     },
-    userMenuList() {
+    userMenuList(): MenuOption[] {
       return generateUserMenuFromRoutes(
         this.userRoutes as unknown as RouteRecordRaw[],
       )
@@ -58,4 +49,4 @@ const useAppStore = defineStore<string, AppState, AppGetters, AppActions>({
   },
 })
 
-export default useAppStore
+export default useRouteStore

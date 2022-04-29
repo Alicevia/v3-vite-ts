@@ -7,9 +7,13 @@
       alignItems: 'center',
     }"
   >
-    <n-result status="403" title="403 禁止访问" description="你可能还未登录">
+    <n-result
+      status="404"
+      title="404 资源不存在"
+      description="生活总归带点荒谬"
+    >
       <template #footer>
-        <n-button @click="backToHome">返 回</n-button>
+        <n-button @click="backToHome">回到首页</n-button>
       </template>
     </n-result>
   </n-layout>
@@ -21,7 +25,7 @@ interface allProps {
 const props = defineProps<allProps>()
 const router = useRouter()
 function backToHome() {
-  router.push({ name: 'login' })
+  router.push({ name: 'index' })
 }
 </script>
 <style lang="scss" scoped>
@@ -36,6 +40,6 @@ function backToHome() {
 <route lang="yaml">
 meta:
   key: 7
-  title: 资源异常
+  title: 404
   layout: false
 </route>

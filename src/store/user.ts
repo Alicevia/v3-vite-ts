@@ -1,7 +1,7 @@
 import { getUserInfo } from '@/api/test'
 import { defineStore } from 'pinia'
 import { useStorage } from '@vueuse/core'
-import useAppStore from './app'
+import useRouteStore from './route'
 const useUserStore = defineStore({
   id: 'user',
   state() {
@@ -20,7 +20,7 @@ const useUserStore = defineStore({
         return Promise.reject(error.value)
       } else {
         const { token, name, routesAuth } = data.value.data
-        const { initRoutes } = useAppStore()
+        const { initRoutes } = useRouteStore()
         this.token = token
         this.isLogin = true
         this.name = name
@@ -29,7 +29,7 @@ const useUserStore = defineStore({
       }
     },
     fetchLogout() {
-      const { clearRoutes } = useAppStore()
+      const { clearRoutes } = useRouteStore()
       this.$reset()
       this.token = null
       clearRoutes()
