@@ -1,9 +1,23 @@
+import { WHITE_LIST } from '@/enums'
 import { renderIcon } from 'hooks/components/icon'
 import routes from 'virtual:generated-pages'
 import type { RouteRecordRaw } from 'vue-router'
 import { setupLayouts } from 'virtual:generated-layouts'
 import { renderLabel } from 'hooks/components/menu'
 import type { MenuOption } from 'naive-ui'
+
+const routeKeyTitleMap = generateKeyTitleMap(routes)
+function generateKeyTitleMap(routes) {
+  return routes.reduce((pre, route) => {
+    const { key, title } = route.meta
+    if (title) {
+      pre[key] = title
+    }
+    if (route.children) Object.assign(pre, generateKeyTitleMap(route.children))
+    return pre
+  }, {})
+}
+console.log(routeKeyTitleMap)
 // setuplayouts
 const setLayouts = (routes) => {
   return routes.reduce((pre: RouteRecordRaw[], route: RouteRecordRaw) => {
@@ -16,7 +30,10 @@ const setLayouts = (routes) => {
   }, [])
 }
 // no auth routes
-const baseRoutes = routes.filter((item) => [6, 7].includes(item.meta?.key))
+const baseRoutes = routes.filter((item) => WHITE_LIST.includes(item.meta?.key))
+const privateRoutes = routes.filter(
+  (item) => !WHITE_LIST.includes(item.meta?.key),
+)
 // create menu
 function generateUserMenuFromRoutes(routes: RouteRecordRaw[]): MenuOption[] {
   return routes.reduce((pre, route: RouteRecordRaw) => {
@@ -56,7 +73,7 @@ function generateUserRouteByAuth(
 }
 
 export {
-  routes,
+  privateRoutes,
   baseRoutes,
   generateUserMenuFromRoutes,
   setLayouts,

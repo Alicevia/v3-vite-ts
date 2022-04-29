@@ -8,15 +8,12 @@
 
 <script setup lang="ts">
 import useUserStore from 'store/user'
-import useAppStore from 'store/app'
 
 const userStore = useUserStore()
-const appStore = useAppStore()
 const router = useRouter()
 const handleLogin = async () => {
   await userStore.fetchUserInfo()
-  appStore.initRoutes()
-  router.push({ path: '/' })
+  return router.push({ name: 'index' })
 }
 </script>
 <style lang="scss" scoped></style>

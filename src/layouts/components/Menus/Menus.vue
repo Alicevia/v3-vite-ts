@@ -29,7 +29,6 @@ const route = useRoute()
 const expandedKeys = ref(route.matched.map((route) => route.meta.key))
 const activeKey = ref(route.meta.key)
 const collapsed = ref(false)
-console.log(route)
 
 const appStore = useAppStore()
 </script>

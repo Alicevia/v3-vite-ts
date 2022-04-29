@@ -6,7 +6,7 @@ import {
   baseRoutes,
   generateUserMenuFromRoutes,
   generateUserRouteByAuth,
-  routes,
+  privateRoutes,
   setLayouts,
 } from '@/router/routes'
 import router from '@/router'
@@ -14,6 +14,7 @@ import router from '@/router'
 interface AppState {
   baseRoutes: RouteRecordRaw[]
   menuAuth: Array<number>
+  clearRoutesCbStack: () => void[]
 }
 
 interface AppGetters {
@@ -22,18 +23,20 @@ interface AppGetters {
 }
 interface AppActions {
   initRoutes: () => void
+  clearRoutes: () => void
 }
 const useAppStore = defineStore<string, AppState, AppGetters, AppActions>({
   id: 'app',
   state() {
     return {
       baseRoutes: baseRoutes,
+      clearRoutesCbStack: [],
     }
   },
   getters: {
     userRoutes() {
       const { routesAuth } = useUserStore()
-      return generateUserRouteByAuth(routes, routesAuth)
+      return generateUserRouteByAuth(privateRoutes, routesAuth)
     },
     userMenuList() {
       return generateUserMenuFromRoutes(
@@ -43,12 +46,14 @@ const useAppStore = defineStore<string, AppState, AppGetters, AppActions>({
   },
   actions: {
     initRoutes() {
-      console.log(this)
       const routes = setLayouts(this.userRoutes)
       routes.forEach((route: RouteRecordRaw) => {
-        router.addRoute(route)
+        this.clearRoutesCbStack.push(router.addRoute(route))
       })
-      console.log(router.getRoutes())
+    },
+    clearRoutes() {
+      this.clearRoutesCbStack.forEach((removeRoute) => removeRoute())
+      this.clearRoutesCbStack = []
     },
   },
 })

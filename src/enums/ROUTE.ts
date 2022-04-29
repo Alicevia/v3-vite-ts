@@ -1,1 +1,1 @@
-export const WHITE_LIST = [6, 7]
+export const WHITE_LIST = [6]

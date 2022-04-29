@@ -1,8 +1,6 @@
 <template>
   <n-layout h-screen>
-    <n-layout-header style="height: 64px; padding: 24px" bordered>
-      <span></span>颐和园路<span class="i-twemoji-astonished-face"></span>
-    </n-layout-header>
+    <Header></Header>
     <n-layout position="absolute" style="top: 64px; bottom: 64px" has-sider>
       <Menus></Menus>
       <n-layout

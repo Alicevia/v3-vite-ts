@@ -7,14 +7,25 @@ const router = createRouter({
   history: createWebHistory(),
   routes: baseRoutes,
 })
-router.beforeEach((to, from, next) => {
-  console.log(to)
-  if (WHITE_LIST.includes(to.meta.key)) return next()
-  const { token } = useUserStore()
-  if (token) {
-    next()
-  } else {
-    next({ name: 'login' })
+router.beforeEach(async (to, from, next) => {
+  const { token, isLogin, fetchUserInfo } = useUserStore()
+  if (WHITE_LIST.includes(to.meta.key)) {
+    if (to.meta.key === 6 && (isLogin || token)) return next({ name: 'index' })
+
+    return next()
   }
+  if (isLogin) {
+    if (to.meta.key === 6) return next({ name: 'index' })
+    return next()
+  }
+  if (token) {
+    try {
+      await fetchUserInfo()
+      return next(to)
+    } catch {
+      console.dir(401)
+    }
+  }
+  return next({ name: 'login' })
 })
 export default router
