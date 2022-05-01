@@ -6,20 +6,24 @@ import { setupLayouts } from 'virtual:generated-layouts'
 import { renderLabel } from 'hooks/components/menu'
 import type { MenuOption } from 'naive-ui'
 
-const routeKeyTitleMap = generateKeyTitleMap(routes)
-function generateKeyTitleMap(routes) {
+function generateKeyMap(routes: RouteRecordRaw[], metaProps) {
   return routes.reduce((pre, route) => {
-    const { key, title } = route.meta
-    if (title) {
-      pre[key] = title
+    const key = route.meta?.key
+    const value = route.meta[metaProps]
+    if (key && value) {
+      pre[key] = value
     }
-    if (route.children) Object.assign(pre, generateKeyTitleMap(route.children))
+    if (route.children)
+      Object.assign(pre, generateKeyMap(route.children, metaProps))
     return pre
   }, {})
 }
-console.log(routeKeyTitleMap)
+
+const routeKeyTitleMap = generateKeyMap(routes, 'title')
+console.log({ routes, routeKeyTitleMap })
+
 // setuplayouts
-const setLayouts = (routes) => {
+const setLayouts = (routes: RouteRecordRaw[]) => {
   return routes.reduce((pre: RouteRecordRaw[], route: RouteRecordRaw) => {
     if (route.meta && route.meta.layout === false) {
       pre.push(route)
@@ -73,6 +77,7 @@ function generateUserRouteByAuth(
 }
 
 export {
+  routes,
   privateRoutes,
   baseRoutes,
   generateUserMenuFromRoutes,

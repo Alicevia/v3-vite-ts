@@ -1,3 +1,4 @@
+import { PRIVATE_WHITE_LIST } from './../enums/ROUTE'
 import { getUserInfo } from '@/api/test'
 import { defineStore } from 'pinia'
 import { useStorage } from '@vueuse/core'
@@ -24,7 +25,9 @@ const useUserStore = defineStore({
         this.token = token
         this.isLogin = true
         this.name = name
-        this.routesAuth = routesAuth
+        this.routesAuth = Array.from(
+          new Set(routesAuth.concat(PRIVATE_WHITE_LIST)),
+        )
         initRoutes()
       }
     },

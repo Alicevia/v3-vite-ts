@@ -1,6 +1,5 @@
 <template>
   <n-layout
-    h-screen
     :content-style="{
       display: 'flex',
       justifyContent: 'center',
@@ -19,13 +18,16 @@
   </n-layout>
 </template>
 <script setup lang="ts">
+import routeName from '@/enums/ROUTE'
+
+console.log(routeName)
 interface allProps {
-  all: string
+  all: Array<string>
 }
-const props = defineProps<allProps>()
+defineProps<allProps>()
 const router = useRouter()
 function backToHome() {
-  router.push({ name: 'index' })
+  router.push({ name: routeName.INDEX })
 }
 </script>
 <style lang="scss" scoped>
@@ -41,5 +43,4 @@ function backToHome() {
 meta:
   key: 7
   title: 404
-  layout: false
 </route>

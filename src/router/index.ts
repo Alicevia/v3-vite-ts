@@ -11,7 +11,6 @@ router.beforeEach(async (to, from, next) => {
   const { token, isLogin, fetchUserInfo } = useUserStore()
   if (WHITE_LIST.includes(to.meta.key)) {
     if (to.meta.key === 6 && (isLogin || token)) return next({ name: 'index' })
-
     return next()
   }
   if (isLogin) {
