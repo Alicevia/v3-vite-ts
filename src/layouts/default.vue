@@ -1,6 +1,15 @@
 <template>
   <BasicLayout>
-    <router-view></router-view>
+    <router-view v-slot="{ Component, route }">
+      <component
+        :is="Component"
+        v-if="route.meta?.keepAlive === false"
+        :key="route.fullPath"
+      />
+      <KeepAlive v-else>
+        <component :is="Component" :key="route.fullPath"></component>
+      </KeepAlive>
+    </router-view>
   </BasicLayout>
 </template>
 

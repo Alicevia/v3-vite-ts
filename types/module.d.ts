@@ -4,3 +4,8 @@ declare module 'css-color-function' {
     parse: (s: string) => string
   }
 }
+declare module '@vue/runtime-core' {
+  export interface ComponentCustomProperties {
+    permission: (v: T) => boolean
+  }
+}

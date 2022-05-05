@@ -11,6 +11,7 @@ const useUserStore = defineStore({
       name: undefined,
       routesAuth: [],
       isLogin: false,
+      buttonAuth: [],
     }
   },
   getters: {},
@@ -21,7 +22,7 @@ const useUserStore = defineStore({
         this.$reset()
         return Promise.reject(error.value)
       } else {
-        const { token, name, routesAuth } = data.value.data
+        const { token, name, routesAuth, buttonAuth } = data.value.data
         const { initRoutes } = useRouteStore()
         this.token = token
         this.isLogin = true
@@ -29,6 +30,7 @@ const useUserStore = defineStore({
         this.routesAuth = Array.from(
           new Set(routesAuth.concat(PRIVATE_WHITE_LIST)),
         )
+        this.buttonAuth = buttonAuth
         initRoutes()
       }
     },
