@@ -27,7 +27,7 @@ interface allProps {
 defineProps<allProps>()
 const router = useRouter()
 function backToHome() {
-  router.push({ name: routeName.INDEX })
+  router.push({ name: routeName.ROUTE_INDEX })
 }
 </script>
 <style lang="scss" scoped>
@@ -41,6 +41,6 @@ function backToHome() {
 </style>
 <route lang="yaml">
 meta:
-  key: 7
+  key: 9
   title: 404
 </route>

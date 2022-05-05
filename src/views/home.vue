@@ -5,11 +5,7 @@
   </div>
 </template>
 
-<script setup lang="ts">
-const abc = {
-  name: 'home',
-}
-</script>
+<script setup lang="ts"></script>
 <style lang="scss" scoped></style>
 <route lang="yaml">
 redirect: 6
