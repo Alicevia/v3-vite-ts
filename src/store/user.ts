@@ -13,6 +13,7 @@ const useUserStore = defineStore({
       isLogin: false,
     }
   },
+  getters: {},
   actions: {
     async fetchUserInfo() {
       const { data, error } = await getUserInfo()
