@@ -23,6 +23,7 @@ declare module 'vue-router' {
     title?: string
     icon?: string
     sort?: number
+    keepAlive?: boolean
     [k: string]: unknown
   }
 }
