@@ -7,6 +7,6 @@ dist-ssr
 node_modules
 .idea/
 *.log
-types
+
 auto-import.d.ts
 doc
