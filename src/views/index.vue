@@ -1,21 +1,25 @@
 <template>
   <n-result m-auto status="success" title="成功" description="我知道你渴望成功">
-    <template #footer>
-      <n-input></n-input>
-      <n-button v-if="permission(11)">13我喜欢</n-button>
-      <n-button @click="change">添加11</n-button>
-    </template>
+    <template #footer> {{ time }} </template>
   </n-result>
 </template>
 
 <script setup lang="ts">
 import useUserStore from 'store/user'
+import { useWebWorker, useWebWorkerFn } from '@vueuse/core'
+const time = ref(1)
+setInterval(() => {
+  time.value += 1
+})
 const route = useRoute()
-console.log(route)
 const userStore = useUserStore()
-const change = () => {
-  userStore.buttonAuth.push(11)
-}
+const { workerFn, workerStatus, workerTerminate } = useWebWorkerFn((dates) => {
+  console.log(dates, 123)
+  return 12
+})
+console.log(workerStatus.value)
+await workerFn(34)
+console.log(workerStatus.value)
 </script>
 <style lang="scss" scoped></style>
 

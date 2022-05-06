@@ -8,7 +8,9 @@
         <n-notification-provider>
           <n-message-provider>
             <AppGlobalSetting></AppGlobalSetting>
-            <router-view></router-view>
+            <Suspense>
+              <router-view></router-view>
+            </Suspense>
           </n-message-provider>
         </n-notification-provider>
       </n-dialog-provider>

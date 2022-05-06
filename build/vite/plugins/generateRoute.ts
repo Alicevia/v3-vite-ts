@@ -24,7 +24,7 @@ export default () => {
       onRoutesGenerated(routes) {
         function sortRoute(routes) {
           routes.sort((a, b) => {
-            return a.meta.sort - b.meta.sort
+            return a.meta?.sort - b.meta?.sort
           })
           routes.forEach((route) => {
             if (route.children) {
