@@ -2,7 +2,7 @@ import { baseRoutes } from './routes'
 import { createRouter, createWebHistory } from 'vue-router'
 import useUserStore from 'store/user'
 import { WHITE_LIST } from '@/enums'
-
+import { useTitle } from '@vueuse/core'
 const router = createRouter({
   history: createWebHistory(),
   routes: baseRoutes,
@@ -26,5 +26,14 @@ router.beforeEach(async (to, from, next) => {
     }
   }
   return next({ name: 'login' })
+})
+
+const docTitle = useTitle()
+
+router.afterEach((to) => {
+  const { title } = to.meta || {}
+  if (title) {
+    docTitle.value = title
+  }
 })
 export default router
