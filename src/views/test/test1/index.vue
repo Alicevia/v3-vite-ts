@@ -9,5 +9,4 @@ meta:
   key: 7
   title: test1
   icon: AccessibilitySharp
-  sort: 1
 </route>

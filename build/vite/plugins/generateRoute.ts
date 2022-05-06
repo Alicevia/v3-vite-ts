@@ -21,10 +21,12 @@ export default () => {
         // }
         // return route
       },
+
       onRoutesGenerated(routes) {
         function sortRoute(routes) {
           routes.sort((a, b) => {
-            return a.meta?.sort - b.meta?.sort
+            const temp = a.meta?.sort - b.meta?.sort
+            return isNaN(temp) ? 0 : temp
           })
           routes.forEach((route) => {
             if (route.children) {
