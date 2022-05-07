@@ -12,7 +12,7 @@
   >
     <n-menu
       v-model:expanded-keys="expandedKeys"
-      v-model:value="activeKey"
+      :value="$route.name"
       :collapsed="collapsed"
       :collapsed-width="64"
       :collapsed-icon-size="22"
@@ -22,14 +22,11 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue'
-
 import useRouteStore from 'store/route'
 const $route = useRoute()
-const expandedKeys = ref($route.matched.map((route) => route.meta.key))
-const activeKey = ref($route.meta.key)
+const expandedKeys = ref($route.matched.map((route) => route.name))
 const collapsed = ref(false)
-console.log($route)
 const appStore = useRouteStore()
+console.log($route)
 </script>
 <style lang="scss" scoped></style>

@@ -18,16 +18,15 @@
   </n-layout>
 </template>
 <script setup lang="ts">
-import routeName from '@/enums/ROUTE'
+import { ROUTE_NAME } from '@/enums'
 
-console.log(routeName)
 interface allProps {
   all: Array<string>
 }
 defineProps<allProps>()
 const router = useRouter()
 function backToHome() {
-  router.push({ name: routeName.ROUTE_INDEX })
+  router.push({ name: ROUTE_NAME.INDEX })
 }
 </script>
 <style lang="scss" scoped>

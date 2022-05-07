@@ -14,12 +14,8 @@ setInterval(() => {
 const route = useRoute()
 const userStore = useUserStore()
 const { workerFn, workerStatus, workerTerminate } = useWebWorkerFn((dates) => {
-  console.log(dates, 123)
   return 12
 })
-console.log(workerStatus.value)
-await workerFn(34)
-console.log(workerStatus.value)
 </script>
 <style lang="scss" scoped></style>
 

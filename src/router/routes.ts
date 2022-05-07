@@ -1,15 +1,18 @@
 import { WHITE_LIST } from '@/enums'
 import { renderIcon } from 'hooks/components/icon'
 import routes from 'virtual:generated-pages'
-import type { RouteRecordRaw } from 'vue-router'
+import type { RouteMeta, RouteRecordRaw } from 'vue-router'
 import { setupLayouts } from 'virtual:generated-layouts'
 import { renderLabel } from 'hooks/components/menu'
 import type { MenuOption } from 'naive-ui'
 
-function generateKeyMap(routes: RouteRecordRaw[], metaProps) {
+function generateKeyMap(routes: RouteRecordRaw[], metaProps: keyof RouteMeta) {
   return routes.reduce((pre, route) => {
     const key = route.meta?.key
     const value = route.meta[metaProps]
+    if (pre[key]) {
+      throw new Error('当前key已经存在', { cause: { route } })
+    }
     if (key && value) {
       pre[key] = value
     }
@@ -44,7 +47,7 @@ function generateUserMenuFromRoutes(routes: RouteRecordRaw[]): MenuOption[] {
     const { title, key, icon } = route.meta ?? {}
     const temp: MenuOption = {}
     if (key && route.name && title && icon) {
-      temp.key = key
+      temp.key = route.name as string
       temp.icon = renderIcon(icon)
       if (route.children) {
         temp.children = generateUserMenuFromRoutes(route.children)
