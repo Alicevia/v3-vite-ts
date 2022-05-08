@@ -1,11 +1,14 @@
-import { useDialog, useLoadingBar, useMessage } from 'naive-ui'
-import { defineComponent } from 'vue'
+import useThemeStore from 'store/theme'
+import { useDialog, useLoadingBar, useMessage, useThemeVars } from 'naive-ui'
+
 const AppGlobalSetting = defineComponent({
-  render: () => {
+  setup: (props, { slots }) => {
+    const themeStore = useThemeStore()
+    themeStore.themeVars = useThemeVars()
     window.$dialog = useDialog()
     window.$message = useMessage()
     window.$loadingBar = useLoadingBar()
-    return null
+    return () => slots.default()
   },
 })
 

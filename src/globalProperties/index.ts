@@ -1,8 +1,9 @@
-import useUserStore from 'store/user'
-export const setupGlobalProperties = (app) => {
-  const userStore = useUserStore()
-  app.config.globalProperties.permission = function (value) {
-    const auth = computed(() => userStore.buttonAuth)
-    return auth.value.includes(value)
+const modules = import.meta.globEager('./*.ts')
+
+export function setupGlobalProperties(app) {
+  for (const key in modules) {
+    if (Object.prototype.hasOwnProperty.call(modules, key)) {
+      modules[key].default(app)
+    }
   }
 }

@@ -7,10 +7,11 @@
       <n-dialog-provider>
         <n-notification-provider>
           <n-message-provider>
-            <AppGlobalSetting></AppGlobalSetting>
-            <Suspense>
-              <router-view></router-view>
-            </Suspense>
+            <AppGlobalSetting>
+              <Suspense>
+                <router-view></router-view>
+              </Suspense>
+            </AppGlobalSetting>
           </n-message-provider>
         </n-notification-provider>
       </n-dialog-provider>

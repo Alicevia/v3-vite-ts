@@ -27,6 +27,5 @@ const $route = useRoute()
 const expandedKeys = ref($route.matched.map((route) => route.name))
 const collapsed = ref(false)
 const appStore = useRouteStore()
-console.log($route)
 </script>
 <style lang="scss" scoped></style>

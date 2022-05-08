@@ -1,14 +1,15 @@
 import { defineStore } from 'pinia'
-import { darkTheme } from 'naive-ui'
+import { darkTheme, useThemeVars } from 'naive-ui'
 import { useStorage } from '@vueuse/core'
 import type { RemovableRef } from '@vueuse/core'
 import color from 'css-color-function'
-interface Color {
-  [k: string]: string
-}
+import type { ComputedRef } from 'vue'
+import type { ThemeCommonVars, CustomThemeCommonVars } from 'naive-ui'
+
 interface Theme {
   theme: RemovableRef<string>
-  themeColor: RemovableRef<Color>
+  themeColor: RemovableRef<string>
+  themeVars: ComputedRef<ThemeCommonVars & CustomThemeCommonVars>
 }
 const useThemeStore = defineStore({
   id: 'theme',
@@ -18,6 +19,7 @@ const useThemeStore = defineStore({
       themeColor: useStorage('themeColor', {
         primaryColor: 'rgb(255,125,125)',
       }),
+      themeVars: {},
     }
   },
   getters: {
