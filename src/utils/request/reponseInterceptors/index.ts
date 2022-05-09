@@ -1,11 +1,16 @@
-import type { AxiosResponse } from 'axios'
+import { createError } from './../../messageTip'
+import type { AxiosResponse, AxiosError } from 'axios'
 import { loginCheckMid } from './loginCheckMid'
 import compose from 'koa-compose'
 import { errorDisplayMid } from './errorDisplayMid'
 
 const responseResolve = compose<AxiosResponse>([errorDisplayMid, loginCheckMid])
-
-export { responseResolve }
+const responseReject = (e: AxiosError) => {
+  $message.error(e.message || 'network is so slow')
+  $loadingBar?.error()
+  return Promise.reject(createError(e))
+}
+export { responseResolve, responseReject }
 
 // function koaCompose(middleware) {
 //   return function (context, next) {
