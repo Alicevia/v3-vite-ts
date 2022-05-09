@@ -8,6 +8,7 @@ const router = createRouter({
   routes: baseRoutes,
 })
 router.beforeEach(async (to, from, next) => {
+  $loadingBar?.start()
   const { token, isLogin, fetchUserInfo } = useUserStore()
   if (WHITE_LIST.includes(to.meta.key)) {
     if (to.meta.key === 6 && (isLogin || token)) return next({ name: 'index' })
@@ -31,6 +32,7 @@ router.beforeEach(async (to, from, next) => {
 const docTitle = useTitle()
 
 router.afterEach((to) => {
+  $loadingBar?.finish()
   const { title } = to.meta || {}
   if (title) {
     docTitle.value = title

@@ -6,7 +6,10 @@ export const loginCheckMid = async (
   next: () => void,
 ) => {
   const { code } = response.data
-  if (code === 0) return await next()
+  if (code === 0) {
+    $loadingBar?.finish()
+    return await next()
+  }
   if (code === 401) {
     // logout?
   }

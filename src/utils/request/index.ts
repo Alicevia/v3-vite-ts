@@ -17,6 +17,7 @@ axios.interceptors.response.use(
   },
   (e: AxiosError) => {
     $message.error(e.message || 'network is so slow')
+    $loadingBar?.error()
     return Promise.reject(createError(e))
   },
 )
