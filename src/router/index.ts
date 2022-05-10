@@ -1,8 +1,11 @@
+import { router } from '@/router'
+import { ROUTE_KEY, ROUTE_NAME } from './../enums/ROUTE'
 import { baseRoutes } from './routes'
 import { createRouter, createWebHistory } from 'vue-router'
 import useUserStore from 'store/user'
 import { WHITE_LIST } from '@/enums'
 import { useTitle } from '@vueuse/core'
+
 const router = createRouter({
   history: createWebHistory(),
   routes: baseRoutes,
@@ -10,23 +13,30 @@ const router = createRouter({
 router.beforeEach(async (to, from, next) => {
   $loadingBar?.start()
   const { token, isLogin, fetchUserInfo } = useUserStore()
+
   if (WHITE_LIST.includes(to.meta.key)) {
-    if (to.meta.key === 6 && (isLogin || token)) return next({ name: 'index' })
-    return next()
+    if (to.meta.key !== ROUTE_KEY.LOGIN) {
+      return next()
+    }
   }
+
   if (isLogin) {
-    if (to.meta.key === 6) return next({ name: 'index' })
+    if (to.meta.key === ROUTE_KEY.LOGIN) return next({ name: 'index' })
     return next()
   }
   if (token) {
     try {
       await fetchUserInfo()
+      if (to.meta.key === ROUTE_KEY.LOGIN) return next({ name: 'index' })
+      console.log(router.getRoutes())
+      console.log(to, from)
       return next(to)
-    } catch {
-      console.dir(401)
+    } catch (e) {
+      console.log(401, e)
     }
   }
-  return next({ name: 'login' })
+  if (to.meta.key === ROUTE_KEY.LOGIN) return next()
+  return next({ name: ROUTE_NAME.LOGIN })
 })
 
 const docTitle = useTitle()

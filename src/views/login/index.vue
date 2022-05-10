@@ -17,7 +17,6 @@ const handleLogin = async () => {
   return router.push({ name: ROUTE_NAME.INDEX })
 }
 const sh = shallowRef(123)
-console.log(sh)
 </script>
 <style lang="scss" scoped></style>
 <route lang="yaml">
