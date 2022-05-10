@@ -7,14 +7,17 @@
 </template>
 
 <script setup lang="ts">
+import { ROUTE_NAME } from '@/enums'
 import useUserStore from 'store/user'
 
 const userStore = useUserStore()
 const router = useRouter()
 const handleLogin = async () => {
   await userStore.fetchUserInfo()
-  return router.push({ name: 'index' })
+  return router.push({ name: ROUTE_NAME.INDEX })
 }
+const sh = shallowRef(123)
+console.log(sh)
 </script>
 <style lang="scss" scoped></style>
 <route lang="yaml">

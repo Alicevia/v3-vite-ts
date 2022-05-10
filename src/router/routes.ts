@@ -9,6 +9,7 @@ import type { MenuOption } from 'naive-ui'
 function generateKeyMap(routes: RouteRecordRaw[], metaProps: keyof RouteMeta) {
   return routes.reduce((pre, route) => {
     const key = route.meta?.key
+    console.log(route.name, route)
     const value = route.meta[metaProps]
     if (pre[key]) {
       throw new Error('当前key已经存在', { cause: { route } })

@@ -1,4 +1,5 @@
 import routes from 'virtual:generated-pages'
+import type { RouteRecordRaw } from 'vue-router'
 interface RouteName {
   [key: string]: string
 }
