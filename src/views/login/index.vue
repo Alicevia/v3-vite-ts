@@ -16,7 +16,6 @@ const handleLogin = async () => {
   await userStore.fetchUserInfo()
   return router.push({ name: ROUTE_NAME.INDEX })
 }
-console.log(router.getRoutes())
 </script>
 <style lang="scss" scoped></style>
 <route lang="yaml">
