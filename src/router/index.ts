@@ -28,11 +28,10 @@ router.beforeEach(async (to, from, next) => {
     try {
       await fetchUserInfo()
       if (to.meta.key === ROUTE_KEY.LOGIN) return next({ name: 'index' })
-      console.log(router.getRoutes())
-      console.log(to, from)
+
       return next(to)
     } catch (e) {
-      console.log(401, e)
+      console.info(401, e)
     }
   }
   if (to.meta.key === ROUTE_KEY.LOGIN) return next()

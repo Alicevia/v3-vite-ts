@@ -14,7 +14,6 @@ export default () => {
         //     ).name,
         //   }
         // }
-        // console.log(route)
         // const icon = route.meta?.icon
         // if (icon) {
         //   route.meta.icon = renderIcon(icon)

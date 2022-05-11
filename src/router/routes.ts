@@ -1,3 +1,4 @@
+import { ROUTE_NAME } from './../enums/ROUTE'
 import { WHITE_LIST } from '@/enums'
 import { renderIcon } from 'hooks/components/icon'
 import routes from 'virtual:generated-pages'
@@ -62,6 +63,8 @@ function generateUserMenuFromRoutes(routes: RouteRecordRaw[]): MenuOption[] {
     return pre
   }, [] as MenuOption[])
 }
+
+// create by auth
 function generateUserRouteByAuth(
   routes: RouteRecordRaw[],
   routesAuth: number[],
@@ -73,6 +76,21 @@ function generateUserRouteByAuth(
         route.children = [
           ...generateUserRouteByAuth(route.children, routesAuth),
         ]
+      }
+      if (route.redirect) {
+        const toIndex = () => {
+          return { name: ROUTE_NAME.INDEX }
+        }
+        if (route.children?.length) {
+          const temp = route.children.find(
+            (item) => item.meta?.key === route.redirect,
+          )
+          route.redirect = temp
+            ? () => ({ name: temp.name })
+            : () => ({ name: route.children[0].name })
+        } else {
+          route.redirect = toIndex
+        }
       }
     }
     return pre

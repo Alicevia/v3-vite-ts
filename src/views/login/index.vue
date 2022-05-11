@@ -16,7 +16,7 @@ const handleLogin = async () => {
   await userStore.fetchUserInfo()
   return router.push({ name: ROUTE_NAME.INDEX })
 }
-const sh = shallowRef(123)
+console.log(router.getRoutes())
 </script>
 <style lang="scss" scoped></style>
 <route lang="yaml">
