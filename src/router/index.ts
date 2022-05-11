@@ -1,4 +1,3 @@
-import { router } from '@/router'
 import { ROUTE_KEY, ROUTE_NAME } from './../enums/ROUTE'
 import { baseRoutes } from './routes'
 import { createRouter, createWebHistory } from 'vue-router'
@@ -13,7 +12,6 @@ const router = createRouter({
 router.beforeEach(async (to, from, next) => {
   $loadingBar?.start()
   const { token, isLogin, fetchUserInfo } = useUserStore()
-
   if (WHITE_LIST.includes(to.meta.key)) {
     if (to.meta.key !== ROUTE_KEY.LOGIN) {
       return next()
@@ -24,16 +22,17 @@ router.beforeEach(async (to, from, next) => {
     if (to.meta.key === ROUTE_KEY.LOGIN) return next({ name: 'index' })
     return next()
   }
+
   if (token) {
     try {
       await fetchUserInfo()
       if (to.meta.key === ROUTE_KEY.LOGIN) return next({ name: 'index' })
-
       return next(to)
     } catch (e) {
       console.info(401, e)
     }
   }
+
   if (to.meta.key === ROUTE_KEY.LOGIN) return next()
   return next({ name: ROUTE_NAME.LOGIN })
 })

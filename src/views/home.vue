@@ -4,7 +4,10 @@
   </div>
 </template>
 
-<script setup lang="ts"></script>
+<script setup lang="ts">
+const router = useRouter()
+console.log(router.getRoutes())
+</script>
 <style lang="scss" scoped></style>
 <route lang="yaml">
 redirect: 4

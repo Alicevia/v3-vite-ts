@@ -1,8 +1,17 @@
 <template>
-  <div>ass</div>
+  <div>
+    <n-button @click="handle">tologin</n-button>
+  </div>
 </template>
 
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import { ROUTE_NAME } from '@/enums'
+
+const router = useRouter()
+const handle = () => {
+  router.push({ name: ROUTE_NAME.LOGIN })
+}
+</script>
 <style lang="scss" scoped></style>
 <route lang="yaml">
 meta:
