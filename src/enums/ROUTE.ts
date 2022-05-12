@@ -6,8 +6,6 @@ interface RouteKeyNameMap {
 interface RouteNameKeyMap {
   [key: string]: number
 }
-export const WHITE_LIST = [6]
-export const PRIVATE_WHITE_LIST = [1, 9]
 
 function generateKeyNameMap(routes: RouteRecordRaw[]): RouteKeyNameMap {
   return routes.reduce((pre, route) => {
@@ -37,4 +35,7 @@ export const ROUTE_KEY = Object.entries(ROUTE_KEY_NAME).reduce(
   },
   {} as RouteNameKeyMap,
 )
+
+export const WHITE_LIST = [ROUTE_KEY.LOGIN]
+export const PRIVATE_WHITE_LIST = [ROUTE_KEY.INDEX, ROUTE_KEY.ALL]
 console.info({ ROUTE_NAME, ROUTE_KEY })
