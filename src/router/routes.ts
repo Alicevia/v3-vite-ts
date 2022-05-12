@@ -1,34 +1,51 @@
 import { ROUTE_NAME } from './../enums/ROUTE'
 import { WHITE_LIST } from '@/enums'
 import { renderIcon } from 'hooks/components/icon'
+import type { MyRouteMeta, MyRouteRecordRaw } from 'vue-router'
 import routes from 'virtual:generated-pages'
-import type { RouteMeta, RouteRecordRaw } from 'vue-router'
+
 import { setupLayouts } from 'virtual:generated-layouts'
 import { renderLabel } from 'hooks/components/menu'
 import type { MenuOption } from 'naive-ui'
 
-function generateKeyMap(routes: RouteRecordRaw[], metaProps: keyof RouteMeta) {
+type b = keyof MyRouteMeta
+function test(a: b) {
+  console.log(a)
+}
+test()
+interface RouteKeyMetaPropsMap<T> {
+  [k: string | number]: T
+}
+function generateKeyMetaPropsMap<T>(
+  routes: MyRouteRecordRaw[],
+  metaProps: keyof MyRouteMeta,
+) {
   return routes.reduce((pre, route) => {
-    const key = route.meta?.key
+    const key = route.meta.key
     const value = route.meta[metaProps]
     if (pre[key]) {
-      throw new Error('当前key已经存在', { cause: { route } })
+      throw new Error('当前key已经存在', {
+        cause: route as unknown as Error,
+      })
     }
     if (key && value) {
       pre[key] = value
     }
     if (route.children)
-      Object.assign(pre, generateKeyMap(route.children, metaProps))
+      Object.assign(pre, generateKeyMetaPropsMap(route.children, metaProps))
     return pre
-  }, {})
+  }, {} as RouteKeyMetaPropsMap)
 }
 
-const routeKeyTitleMap = generateKeyMap(routes, 'title')
+const routeKeyTitleMap = generateKeyMetaPropsMap(
+  routes as MyRouteRecordRaw[],
+  'title',
+)
 console.log({ routes, routeKeyTitleMap })
 
 // setuplayouts
-const setLayouts = (routes: RouteRecordRaw[]) => {
-  return routes.reduce((pre: RouteRecordRaw[], route: RouteRecordRaw) => {
+const setLayouts = (routes: MyRouteRecordRaw[]) => {
+  return routes.reduce((pre: MyRouteRecordRaw[], route: MyRouteRecordRaw) => {
     if (route.meta && route.meta.layout === false) {
       pre.push(route)
     } else {
@@ -39,22 +56,23 @@ const setLayouts = (routes: RouteRecordRaw[]) => {
 }
 // no auth routes
 const baseRoutes = routes.filter((item) => WHITE_LIST.includes(item.meta?.key))
+// auth routes
 const privateRoutes = routes.filter(
   (item) => !WHITE_LIST.includes(item.meta?.key),
 )
-// create menu
-function generateUserMenuFromRoutes(routes: RouteRecordRaw[]): MenuOption[] {
-  return routes.reduce((pre, route: RouteRecordRaw) => {
-    const { title, key, icon } = route.meta ?? {}
+// create menu list
+function generateUserMenuFromRoutes(routes: MyRouteRecordRaw[]): MenuOption[] {
+  return routes.reduce((pre, route: MyRouteRecordRaw) => {
+    const { title, icon, isMenu } = route.meta
     const temp: MenuOption = {}
-    if (key && route.name && title && icon) {
+    if (isMenu !== false) {
       temp.key = route.name as string
       temp.icon = renderIcon(icon)
       if (route.children) {
         temp.children = generateUserMenuFromRoutes(route.children)
         temp.label = title
       } else {
-        temp.label = renderLabel(route.name, title)
+        temp.label = renderLabel(route.name as string, title)
       }
     } else {
       return pre
@@ -66,9 +84,9 @@ function generateUserMenuFromRoutes(routes: RouteRecordRaw[]): MenuOption[] {
 
 // create by auth
 function generateUserRouteByAuth(
-  routes: RouteRecordRaw[],
+  routes: MyRouteRecordRaw[],
   routesAuth: number[],
-): RouteRecordRaw[] {
+): MyRouteRecordRaw[] {
   return routes.reduce((pre, route) => {
     if (routesAuth.includes(route.meta?.key)) {
       pre.push(route)
@@ -94,7 +112,7 @@ function generateUserRouteByAuth(
       }
     }
     return pre
-  }, [] as RouteRecordRaw[])
+  }, [] as MyRouteRecordRaw[])
 }
 
 export {

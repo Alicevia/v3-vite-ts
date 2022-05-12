@@ -23,8 +23,3 @@ import AppGlobalSetting from '@/settings/AppGlobalSetting'
 import useThemeStore from 'store/theme'
 const theme = useThemeStore()
 </script>
-<script lang="ts">
-export default {
-  name: 'App',
-}
-</script>

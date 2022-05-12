@@ -1,3 +1,4 @@
+import type { MyRouteRecordRaw } from 'vue-router'
 declare module 'css-color-function' {
   interface CssColor {
     convert: (s: string) => string
