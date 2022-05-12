@@ -30,7 +30,7 @@ const theme = useThemeStore()
 const userStore = useUserStore()
 const router = useRouter()
 const hanldeLogout = () => {
-  userStore.fetchLogout()
+  userStore.clearUserInfo()
   router.push({ name: 'login' })
 }
 

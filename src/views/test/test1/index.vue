@@ -1,8 +1,17 @@
 <template>
-  <div>test1</div>
+  <div>
+    <n-button @click="handleLogin"> toHome </n-button>
+  </div>
 </template>
 
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import { ROUTE_NAME } from '@/enums'
+
+const router = useRouter()
+const handleLogin = async () => {
+  return router.push({ name: ROUTE_NAME.HOME })
+}
+</script>
 <style lang="scss" scoped></style>
 <route lang="yaml">
 meta:

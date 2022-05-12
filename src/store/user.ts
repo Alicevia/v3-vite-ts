@@ -19,22 +19,21 @@ const useUserStore = defineStore({
     async fetchUserInfo() {
       const { data, error } = await getUserInfo()
       if (error.value) {
-        this.$reset()
+        this.clearUserInfo()
         return Promise.reject(error.value)
-      } else {
-        const { token, name, routesAuth, buttonAuth } = data.value.data
-        const { initRoutes } = useRouteStore()
-        this.token = token
-        this.isLogin = true
-        this.name = name
-        this.routesAuth = Array.from(
-          new Set(routesAuth.concat(PRIVATE_WHITE_LIST)),
-        )
-        this.buttonAuth = buttonAuth
-        initRoutes()
       }
+      const { token, name, routesAuth, buttonAuth } = data.value.data
+      const { initRoutes } = useRouteStore()
+      this.token = token
+      this.isLogin = true
+      this.name = name
+      this.routesAuth = Array.from(
+        new Set(routesAuth.concat(PRIVATE_WHITE_LIST)),
+      )
+      this.buttonAuth = buttonAuth
+      initRoutes()
     },
-    fetchLogout() {
+    clearUserInfo() {
       const { clearRoutes } = useRouteStore()
       this.$reset()
       this.token = null

@@ -41,5 +41,5 @@ function backToHome() {
 <route lang="yaml">
 meta:
   key: 9
-  title: 404
+  title: '404'
 </route>

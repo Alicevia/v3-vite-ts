@@ -9,6 +9,7 @@ const router = createRouter({
   history: createWebHistory(),
   routes: baseRoutes,
 })
+
 router.beforeEach(async (to, from, next) => {
   $loadingBar?.start()
   const { token, isLogin, fetchUserInfo } = useUserStore()
@@ -19,14 +20,15 @@ router.beforeEach(async (to, from, next) => {
   }
 
   if (isLogin) {
-    if (to.meta.key === ROUTE_KEY.LOGIN) return next({ name: 'index' })
+    if (to.meta.key === ROUTE_KEY.LOGIN) return next({ name: ROUTE_NAME.INDEX })
     return next()
   }
 
   if (token) {
     try {
       await fetchUserInfo()
-      if (to.meta.key === ROUTE_KEY.LOGIN) return next({ name: 'index' })
+      if (to.meta.key === ROUTE_KEY.LOGIN)
+        return next({ name: ROUTE_NAME.INDEX })
       return next(to)
     } catch (e) {
       console.info(401, e)
