@@ -24,9 +24,8 @@
 <script setup lang="ts">
 import useRouteStore from 'store/route'
 const $route = useRoute()
-const expandedKeys = ref($route.matched.map((route) => route.name))
+const expandedKeys = ref($route.matched.map((route) => route.name).filter(item => item))
 const collapsed = ref(false)
 const appStore = useRouteStore()
-console.log(appStore.userMenuList)
 </script>
 <style lang="scss" scoped></style>

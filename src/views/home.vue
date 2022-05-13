@@ -1,12 +1,10 @@
 <template>
   <div>
-    <router-view></router-view>
+    <router-view />
   </div>
 </template>
 
 <script setup lang="ts">
-const router = useRouter()
-console.log(router.getRoutes())
 </script>
 <style lang="scss" scoped></style>
 <route lang="yaml">

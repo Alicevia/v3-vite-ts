@@ -12,7 +12,7 @@ const router = createRouter({
 
 router.beforeEach(async (to, from, next) => {
   $loadingBar?.start()
-  const { token, isLogin, fetchUserInfo } = useUserStore()
+  const { token, isLogin, fetchUserInfo, } = useUserStore()
   if (WHITE_LIST.includes(to.meta.key)) {
     if (to.meta.key !== ROUTE_KEY.LOGIN) {
       return next()
@@ -20,15 +20,14 @@ router.beforeEach(async (to, from, next) => {
   }
 
   if (isLogin) {
-    if (to.meta.key === ROUTE_KEY.LOGIN) return next({ name: ROUTE_NAME.INDEX })
+    if (to.meta.key === ROUTE_KEY.LOGIN) return next({ name: ROUTE_NAME.INDEX, })
     return next()
   }
 
   if (token) {
     try {
       await fetchUserInfo()
-      if (to.meta.key === ROUTE_KEY.LOGIN)
-        return next({ name: ROUTE_NAME.INDEX })
+      if (to.meta.key === ROUTE_KEY.LOGIN) { return next({ name: ROUTE_NAME.INDEX, }) }
       return next(to)
     } catch (e) {
       console.info(401, e)
@@ -36,14 +35,14 @@ router.beforeEach(async (to, from, next) => {
   }
 
   if (to.meta.key === ROUTE_KEY.LOGIN) return next()
-  return next({ name: ROUTE_NAME.LOGIN })
+  return next({ name: ROUTE_NAME.LOGIN, })
 })
 
 const docTitle = useTitle()
 
 router.afterEach((to) => {
   $loadingBar?.finish()
-  const { title } = to.meta || {}
+  const { title, } = to.meta || {}
   if (title) {
     docTitle.value = title
   }

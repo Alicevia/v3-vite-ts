@@ -12,7 +12,9 @@
       description="生活总归带点荒谬"
     >
       <template #footer>
-        <n-button @click="backToHome">回到首页</n-button>
+        <n-button @click="backToHome">
+          回到首页
+        </n-button>
       </template>
     </n-result>
   </n-layout>
@@ -25,8 +27,8 @@ interface allProps {
 }
 defineProps<allProps>()
 const router = useRouter()
-function backToHome() {
-  router.push({ name: ROUTE_NAME.INDEX })
+function backToHome () {
+  router.push({ name: ROUTE_NAME.INDEX, })
 }
 </script>
 <style lang="scss" scoped>
@@ -42,4 +44,5 @@ function backToHome() {
 meta:
   key: 9
   title: '404'
+  isMenu: false
 </route>

@@ -1,23 +1,39 @@
 import 'vue-router'
-
 declare module 'vue-router' {
-  interface MyRouteMeta {
+  //  interface RouteMeta {
+  //   key: number
+  //   title?: string
+  //   icon?: string
+  //   sort?: number
+  //   keepAlive?: boolean
+  //   isMenu?: boolean
+  // }
+
+  interface RouteMeta {
     key: number
-    title?: string
+    title: string
     icon?: string
     sort?: number
     keepAlive?: boolean
     isMenu?: boolean
   }
-  interface RouteMeta extends MyRouteMeta { }
+  interface MyRouteMeta {
+    key: number
+    title: string
+    icon?: string
+    sort?: number
+    keepAlive?: boolean
+    isMenu?: boolean
+  }
+  interface MyRouteRecordRaw extends Omit<RouteRecordRaw, 'meta'>{
+    name:string
+    meta:RouteMeta
+    children?:MyRouteRecordRaw[]
+  }
 
-  interface MyRouteRecordRaw extends Omit<RouteRecordRaw, 'meta'> {
-    name: string
-    meta: RouteMeta
-    component?: Component | string
-    components?: Component
-    children?: MyRouteRecordRaw[]
-    props?: Recordable
-    fullPath?: string
+  type MetaProps = keyof MyRouteMeta
+  interface RouteKeyMap<T extends MetaProps>{
+    [k:number]:MyRouteMeta[T]
   }
 }
+export { }

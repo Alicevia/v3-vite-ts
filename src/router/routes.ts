@@ -1,47 +1,38 @@
 import { ROUTE_NAME } from './../enums/ROUTE'
 import { WHITE_LIST } from '@/enums'
 import { renderIcon } from 'hooks/components/icon'
-import type { MyRouteMeta, MyRouteRecordRaw } from 'vue-router'
+import type { MetaProps, RouteKeyMap, MyRouteRecordRaw, MyRouteMeta } from 'vue-router'
 import routes from 'virtual:generated-pages'
-
 import { setupLayouts } from 'virtual:generated-layouts'
 import { renderLabel } from 'hooks/components/menu'
 import type { MenuOption } from 'naive-ui'
 
-type b = keyof MyRouteMeta
-function test(a: b) {
-  console.log(a)
-}
-test()
-interface RouteKeyMetaPropsMap<T> {
-  [k: string | number]: T
-}
-function generateKeyMetaPropsMap<T>(
+function generateKeyMetaPropsMap<T extends MetaProps> (
   routes: MyRouteRecordRaw[],
-  metaProps: keyof MyRouteMeta,
-) {
+  metaProps:T
+):RouteKeyMap<T> {
+  const temp :RouteKeyMap<T> = {}
   return routes.reduce((pre, route) => {
-    const key = route.meta.key
+    const { key, } = route.meta
     const value = route.meta[metaProps]
     if (pre[key]) {
       throw new Error('当前key已经存在', {
         cause: route as unknown as Error,
       })
     }
-    if (key && value) {
+    if (key) {
       pre[key] = value
     }
-    if (route.children)
-      Object.assign(pre, generateKeyMetaPropsMap(route.children, metaProps))
+    if (route.children) { Object.assign(pre, generateKeyMetaPropsMap(route.children, metaProps)) }
     return pre
-  }, {} as RouteKeyMetaPropsMap)
+  }, temp)
 }
 
 const routeKeyTitleMap = generateKeyMetaPropsMap(
-  routes as MyRouteRecordRaw[],
-  'title',
+  routes,
+  'title'
 )
-console.log({ routes, routeKeyTitleMap })
+console.log({ routes, routeKeyTitleMap, })
 
 // setuplayouts
 const setLayouts = (routes: MyRouteRecordRaw[]) => {
@@ -55,15 +46,15 @@ const setLayouts = (routes: MyRouteRecordRaw[]) => {
   }, [])
 }
 // no auth routes
-const baseRoutes = routes.filter((item) => WHITE_LIST.includes(item.meta?.key))
+const baseRoutes = routes.filter((item) => WHITE_LIST.includes(item.meta.key))
 // auth routes
 const privateRoutes = routes.filter(
-  (item) => !WHITE_LIST.includes(item.meta?.key),
+  (item) => !WHITE_LIST.includes(item.meta.key)
 )
 // create menu list
-function generateUserMenuFromRoutes(routes: MyRouteRecordRaw[]): MenuOption[] {
+function generateUserMenuFromRoutes (routes: MyRouteRecordRaw[]): MenuOption[] {
   return routes.reduce((pre, route: MyRouteRecordRaw) => {
-    const { title, icon, isMenu } = route.meta
+    const { title, icon, isMenu, } = route.meta
     const temp: MenuOption = {}
     if (isMenu !== false) {
       temp.key = route.name as string
@@ -83,29 +74,29 @@ function generateUserMenuFromRoutes(routes: MyRouteRecordRaw[]): MenuOption[] {
 }
 
 // create by auth
-function generateUserRouteByAuth(
+function generateUserRouteByAuth (
   routes: MyRouteRecordRaw[],
-  routesAuth: number[],
+  routesAuth: number[]
 ): MyRouteRecordRaw[] {
   return routes.reduce((pre, route) => {
     if (routesAuth.includes(route.meta?.key)) {
       pre.push(route)
       if (route.children) {
         route.children = [
-          ...generateUserRouteByAuth(route.children, routesAuth),
+          ...generateUserRouteByAuth(route.children, routesAuth)
         ]
       }
       if (route.redirect) {
         const toIndex = () => {
-          return { name: ROUTE_NAME.INDEX }
+          return { name: ROUTE_NAME.INDEX, }
         }
-        if (route.children?.length) {
+        if (route.children && route.children.length > 0) {
           const temp = route.children.find(
-            (item) => item.meta?.key === route.redirect,
+            (item) => item.meta?.key === route.redirect
           )
           route.redirect = temp
-            ? () => ({ name: temp.name })
-            : () => ({ name: route.children[0].name })
+            ? () => ({ name: temp.name, })
+            : () => ({ name: route.children![0].name, })
         } else {
           route.redirect = toIndex
         }
@@ -121,5 +112,5 @@ export {
   baseRoutes,
   generateUserMenuFromRoutes,
   setLayouts,
-  generateUserRouteByAuth,
+  generateUserRouteByAuth
 }

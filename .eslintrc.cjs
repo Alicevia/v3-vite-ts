@@ -8,8 +8,7 @@ module.exports = {
     'plugin:vue/vue3-recommended',
     'standard',
     'plugin:@typescript-eslint/recommended',
-    'plugin:prettier/recommended',
-    './.eslintrc-auto-import.json',
+    './.eslintrc-auto-import.json'
   ],
   parser: 'vue-eslint-parser',
   parserOptions: {
@@ -28,5 +27,16 @@ module.exports = {
     $message: false,
   },
   // plugins: ['vue', '@typescript-eslint'],
-  rules: { 'vue/multi-word-component-names': 0 },
-}
+  rules: {
+    'vue/multi-word-component-names': 0,
+    'space-before-function-paren': ['error', 'always'],
+    'comma-dangle': [
+      'error',
+      {
+        objects: 'always',
+      }
+    ],
+    quotes: ['error', 'single'],
+    semi: ['error', 'never'],
+  },
+};
