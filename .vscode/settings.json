@@ -13,5 +13,6 @@
   },
   "[vue]": {
     "editor.defaultFormatter": "dbaeumer.vscode-eslint"
-  }
+  },
+  "prettier.enable": false
 }
