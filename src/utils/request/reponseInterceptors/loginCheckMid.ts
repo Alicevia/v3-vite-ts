@@ -1,6 +1,5 @@
 import { createError } from './../../messageTip'
 import type { AxiosResponse } from 'axios'
-
 export const loginCheckMid = async (
   response: AxiosResponse,
   next: () => void,
