@@ -1,5 +1,6 @@
 {
   "editor.defaultFormatter": "dbaeumer.vscode-eslint",
+  "eslint.format.enable": true,
   "editor.formatOnSave": true,
   "editor.codeActionsOnSave": {
     "source.fixAll": true
@@ -14,5 +15,14 @@
     "editor.defaultFormatter": "dbaeumer.vscode-eslint"
   },
   "prettier.enable": false,
+  "eslint.validate": [
+    "javascript",
+    "javascriptreact",
+    "typescript",
+    "typescriptreact",
+    "html",
+    "vue",
+    "markdown"
+  ],
   "eslint.packageManager": "pnpm",
 }

@@ -2,9 +2,9 @@ import { createError } from './../../messageTip'
 import type { AxiosResponse } from 'axios'
 export const loginCheckMid = async (
   response: AxiosResponse,
-  next: () => void,
+  next: () => void
 ) => {
-  const { code } = response.data
+  const { code, } = response.data
   if (code === 0) {
     $loadingBar?.finish()
     return await next()

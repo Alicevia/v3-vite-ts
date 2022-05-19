@@ -1,6 +1,8 @@
 <template>
   <div>
-    <n-button @click="handleLogin"> toHome </n-button>
+    <n-button @click="handleLogin">
+      toHome
+    </n-button>
   </div>
 </template>
 
@@ -9,7 +11,7 @@ import { ROUTE_NAME } from '@/enums'
 
 const router = useRouter()
 const handleLogin = async () => {
-  return router.push({ name: ROUTE_NAME.HOME })
+  return router.push({ name: ROUTE_NAME.HOME, })
 }
 </script>
 <style lang="scss" scoped></style>
