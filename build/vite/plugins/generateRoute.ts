@@ -6,7 +6,7 @@ export default () => {
       dirs: [{ dir: 'src/views', baseRoute: '' }],
       importMode: 'async',
       exclude: ['**/components/*.vue'],
-      extendRoute(route, parent) {
+      extendRoute (route, parent) {
         // if (route.redirect && route.children) {
         //   route.redirect = {
         //     name: route.children.find(
@@ -21,8 +21,8 @@ export default () => {
         // return route
       },
 
-      onRoutesGenerated(routes) {
-        function sortRoute(routes) {
+      onRoutesGenerated (routes) {
+        function sortRoute (routes) {
           routes.sort((a, b) => {
             const temp = a.meta?.sort - b.meta?.sort
             return isNaN(temp) ? 0 : temp
@@ -36,11 +36,11 @@ export default () => {
         sortRoute(routes)
         return routes
       },
-      routeBlockLang: 'yaml',
+      routeBlockLang: 'yaml'
     }),
     Layouts({
       layoutsDirs: 'src/layouts',
-      defaultLayout: 'default',
-    }),
+      defaultLayout: 'default'
+    })
   ]
 }

@@ -5,7 +5,7 @@
         :is="Component"
         v-if="route.meta?.keepAlive === false"
         :key="route.fullPath"
-      />
+      ></component>
       <KeepAlive v-else>
         <component :is="Component" :key="route.fullPath"></component>
       </KeepAlive>
