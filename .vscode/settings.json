@@ -24,5 +24,4 @@
     "vue",
     "markdown"
   ],
-  "eslint.packageManager": "pnpm",
 }

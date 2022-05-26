@@ -1,5 +1,7 @@
 <template>
-  <n-result m-auto status="success" title="成功" description="我知道你渴望成功">
+
+<route-link></route-link>
+<!-- <n-result m-auto status="success" title="成功" description="我知道你渴望成功">
     <template #footer>
       <n-button @click="okBtn">
         正常请求
@@ -8,7 +10,7 @@
         异常请求
       </n-button>
     </template>
-  </n-result>
+  </n-result> -->
 </template>
 
 <script setup lang="ts">

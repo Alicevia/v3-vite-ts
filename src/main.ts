@@ -5,7 +5,7 @@ import router from './router'
 import './utils/request'
 import './style/index.scss'
 import 'uno.css'
-import './test/b'
+// import './test/b'
 const app = createApp(App)
 app.use(store)
 app.use(router)

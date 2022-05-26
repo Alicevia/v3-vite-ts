@@ -17,7 +17,7 @@ const handleLogin = async () => {
   return router.push({ name: ROUTE_NAME.HOME })
 }
 const toIndex = () => {
-  router.push({ path: '/' })
+  router.push({ path: '/fadf' })
 }
 </script>
 <style lang="scss" scoped></style>
