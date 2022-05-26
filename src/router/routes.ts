@@ -13,11 +13,11 @@ function generateKeyMetaPropsMap<T extends MetaProps> (
 ):RouteKeyMap<T> {
   const temp :RouteKeyMap<T> = {}
   return routes.reduce((pre, route) => {
-    const { key, } = route.meta
+    const { key } = route.meta
     const value = route.meta[metaProps]
     if (pre[key]) {
       throw new Error('当前key已经存在', {
-        cause: route as unknown as Error,
+        cause: route as unknown as Error
       })
     }
     if (key) {
@@ -32,7 +32,7 @@ const routeKeyTitleMap = generateKeyMetaPropsMap(
   routes,
   'title'
 )
-console.log({ routes, routeKeyTitleMap, })
+console.log({ routes, routeKeyTitleMap })
 
 // setuplayouts
 const setLayouts = (routes: MyRouteRecordRaw[]) => {
@@ -54,7 +54,7 @@ const privateRoutes = routes.filter(
 // create menu list
 function generateUserMenuFromRoutes (routes: MyRouteRecordRaw[]): MenuOption[] {
   return routes.reduce((pre, route: MyRouteRecordRaw) => {
-    const { title, icon, isMenu, } = route.meta
+    const { title, icon, isMenu } = route.meta
     const temp: MenuOption = {}
     if (isMenu !== false) {
       temp.key = route.name as string
@@ -88,15 +88,15 @@ function generateUserRouteByAuth (
       }
       if (route.redirect) {
         const toIndex = () => {
-          return { name: ROUTE_NAME.INDEX, }
+          return { name: ROUTE_NAME.INDEX }
         }
         if (route.children && route.children.length > 0) {
           const temp = route.children.find(
             (item) => item.meta?.key === route.redirect
           )
           route.redirect = temp
-            ? () => ({ name: temp.name, })
-            : () => ({ name: route.children![0].name, })
+            ? () => ({ name: temp.name })
+            : () => ({ name: route.children![0].name })
         } else {
           route.redirect = toIndex
         }

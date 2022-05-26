@@ -1,3 +1,3 @@
 module.exports = {
-  extends: ['@alicevia', './.eslintrc-auto-import.json'],
+  extends: ['@alicevia', './.eslintrc-auto-import.json']
 }
