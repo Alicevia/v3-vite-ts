@@ -19,8 +19,8 @@
 <script setup lang="ts">
 import { getTestJson, getTestError } from '@/api/test'
 
-const { execute: okBtn, } = getTestJson()
-const { execute: errBtn, } = getTestError()
+const { execute: okBtn } = getTestJson()
+const { execute: errBtn } = getTestError()
 
 </script>
 

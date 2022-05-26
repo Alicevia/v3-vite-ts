@@ -1,6 +1,8 @@
 <template>
   <div>
-    <n-button @click="handle">tologin</n-button>
+    <n-button @click="handler">
+      tologin
+    </n-button>
   </div>
 </template>
 
@@ -8,7 +10,7 @@
 import { ROUTE_NAME } from '@/enums'
 
 const router = useRouter()
-const handle = () => {
+const handler = () => {
   router.push({ name: ROUTE_NAME.LOGIN })
 }
 </script>

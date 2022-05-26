@@ -17,7 +17,7 @@
       :collapsed-width="64"
       :collapsed-icon-size="22"
       :options="appStore.userMenuList"
-    />
+    ></n-menu>
   </n-layout-sider>
 </template>
 
