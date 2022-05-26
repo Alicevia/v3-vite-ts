@@ -1,14 +1,13 @@
 import { ROUTE_NAME } from './../enums/ROUTE'
 import { WHITE_LIST } from '@/enums'
 import { renderIcon } from 'hooks/components/icon'
-import type { MetaProps, RouteKeyMap, MyRouteRecordRaw, MyRouteMeta } from 'vue-router'
 import routes from 'virtual:generated-pages'
 import { setupLayouts } from 'virtual:generated-layouts'
 import { renderLabel } from 'hooks/components/menu'
 import type { MenuOption } from 'naive-ui'
-
+import type { MetaProps, RouteKeyMap, RouteRecordRaw } from 'vue-router'
 function generateKeyMetaPropsMap<T extends MetaProps> (
-  routes: MyRouteRecordRaw[],
+  routes: RouteRecordRaw[],
   metaProps:T
 ):RouteKeyMap<T> {
   const temp :RouteKeyMap<T> = {}
@@ -28,15 +27,12 @@ function generateKeyMetaPropsMap<T extends MetaProps> (
   }, temp)
 }
 
-const routeKeyTitleMap = generateKeyMetaPropsMap(
-  routes,
-  'title'
-)
+const routeKeyTitleMap = generateKeyMetaPropsMap(routes, 'title')
 console.log({ routes, routeKeyTitleMap, })
 
 // setuplayouts
-const setLayouts = (routes: MyRouteRecordRaw[]) => {
-  return routes.reduce((pre: MyRouteRecordRaw[], route: MyRouteRecordRaw) => {
+const setLayouts = (routes: RouteRecordRaw[]) => {
+  return routes.reduce((pre: RouteRecordRaw[], route: RouteRecordRaw) => {
     if (route.meta && route.meta.layout === false) {
       pre.push(route)
     } else {
@@ -53,8 +49,8 @@ const privateRoutes = routes.filter(
   (item) => !WHITE_LIST.includes(item.meta.key)
 )
 // create menu list
-function generateUserMenuFromRoutes (routes: MyRouteRecordRaw[]): MenuOption[] {
-  return routes.reduce((pre, route: MyRouteRecordRaw) => {
+function generateUserMenuFromRoutes (routes: RouteRecordRaw[]): MenuOption[] {
+  return routes.reduce((pre, route: RouteRecordRaw) => {
     const { title, icon, isMenu, } = route.meta
     const temp: MenuOption = {}
     if (isMenu !== false) {
@@ -76,9 +72,9 @@ function generateUserMenuFromRoutes (routes: MyRouteRecordRaw[]): MenuOption[] {
 
 // create by auth
 function generateUserRouteByAuth (
-  routes: MyRouteRecordRaw[],
+  routes: RouteRecordRaw[],
   routesAuth: number[]
-): MyRouteRecordRaw[] {
+): RouteRecordRaw[] {
   return routes.reduce((pre, route) => {
     if (routesAuth.includes(route.meta?.key)) {
       pre.push(route)
@@ -91,7 +87,7 @@ function generateUserRouteByAuth (
         const toIndex = () => {
           return { name: ROUTE_NAME.INDEX, }
         }
-        if (route.children && route.children.length > 0) {
+        if (Array.isArray(route.children) && route.children.length > 0) {
           const temp = route.children.find(
             (item) => item.meta?.key === route.redirect
           )
@@ -104,7 +100,7 @@ function generateUserRouteByAuth (
       }
     }
     return pre
-  }, [] as MyRouteRecordRaw[])
+  }, [] as RouteRecordRaw[])
 }
 
 export {
