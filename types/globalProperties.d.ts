@@ -1,11 +1,7 @@
-declare module '@vue/runtime-core' {
-  export interface ComponentCustomProperties {
-    permission: (v: T) => boolean
+declare module 'vue' {
+  interface ComponentCustomProperties {
+    $permission: (v: unknown) => boolean
+    $themeVars:(k: string) => string
   }
 }
-// export {}
-// declare module 'vue-router' {
-//   interface RouteMeta {
-//     title:string
-//   }
-//  }
+export {}

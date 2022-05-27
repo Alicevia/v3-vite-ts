@@ -1,8 +1,9 @@
 import { defineStore } from 'pinia'
-import { darkTheme } from 'naive-ui'
+import { darkTheme, useThemeVars } from 'naive-ui'
 import { useStorage } from '@vueuse/core'
 import type { RemovableRef } from '@vueuse/core'
 import color from 'css-color-function'
+import type { computedRef } from 'vue'
 
 import type { ThemeCommonVars, CustomThemeCommonVars } from 'naive-ui'
 
@@ -53,7 +54,6 @@ const useThemeStore = defineStore({
     toggleTheme (): void {
       this.theme === 'dark' ? (this.theme = null) : (this.theme = 'dark')
     },
-
     changeThemeColor: useDebounceFn(function (key, color) {
       this.themeColor[key] = color
     }, 300)

@@ -4,4 +4,6 @@ declare module 'css-color-function' {
     convert: (s: string) => string
     parse: (s: string) => string
   }
+  const color: CssColor
+  export default color
 }

@@ -24,4 +24,7 @@
     "vue",
     "markdown"
   ],
+  "[json]": {
+    "editor.defaultFormatter": "vscode.json-language-features"
+  },
 }

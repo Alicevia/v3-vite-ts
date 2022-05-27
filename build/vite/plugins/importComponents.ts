@@ -5,10 +5,15 @@ import AutoImport from 'unplugin-auto-import/vite'
 export default () => {
   return [
     AutoImport({
+      include: [
+        /\.[tj]sx?$/, // .ts, .tsx, .js, .jsx
+        /\.vue$/, /\.vue\?vue/, // .vue
+        /\.md$/ // .md
+      ],
       imports: [
         'vue',
         'vue-router',
-        '@vueuse/core',
+        '@vueuse/core'
         // 'vue-i18n',
         // 'vue/macros',
         // '@vueuse/head',
@@ -20,15 +25,15 @@ export default () => {
       eslintrc: {
         enabled: true, // Default `false`
         filepath: './.eslintrc-auto-import.json',
-        globalsPropValue: true, // Default `true`, (true | false | 'readonly' | 'readable' | 'writable' | 'writeable')
-      },
+        globalsPropValue: true // Default `true`, (true | false | 'readonly' | 'readable' | 'writable' | 'writeable')
+      }
     }),
     Components({
-      dirs: ['src/**/components',],
+      dirs: ['src/**/components'],
       dts: 'types/auto-import.d.ts',
       extensions: ['vue'],
       resolvers: [NaiveUiResolver()],
-      include: [/\.vue$/, /\.vue\?vue/],
-    }),
+      include: [/\.vue$/, /\.vue\?vue/]
+    })
   ]
 }

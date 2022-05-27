@@ -1,4 +1,5 @@
 import 'vue-router'
+
 declare module 'vue-router' {
    interface RouteMeta {
     key: number
@@ -9,7 +10,7 @@ declare module 'vue-router' {
     isMenu?: boolean
     layout?:string|boolean
   }
-    interface MyRouteMeta {
+  interface MyRouteMeta {
     key: number
     title: string
     icon?: string
@@ -19,7 +20,7 @@ declare module 'vue-router' {
     layout?:string|boolean
   }
 
-   type MetaProps = keyof MyRouteMeta
+  type MetaProps = keyof MyRouteMeta
   interface RouteKeyMap<T extends MetaProps>{
     [k:number]:RouteMeta[T]
   }
@@ -29,5 +30,5 @@ declare module 'vue-router' {
     meta:RouteMeta
     children?:RouteRecordRaw[]
    }
-
 }
+export {}

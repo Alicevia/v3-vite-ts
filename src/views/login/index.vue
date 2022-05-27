@@ -1,7 +1,9 @@
 <template>
   <n-layout h-screen>
     <div>
-      <n-button @click="handleLogin">login</n-button>
+      <n-button @click="handleLogin">
+        login
+      </n-button>
     </div>
   </n-layout>
 </template>

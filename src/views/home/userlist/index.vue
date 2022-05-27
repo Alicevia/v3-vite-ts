@@ -1,8 +1,13 @@
 <template>
-  <div>我是/home/userlist</div>
+  <div>
+    我是/home/userlist
+    <span>{{ $themeVars('primaryColor') }}</span>
+  </div>
 </template>
 
-<script lang="ts" setup></script>
+<script lang="ts" setup>
+
+</script>
 <style lang="scss" scoped></style>
 <route lang="yaml">
 meta:

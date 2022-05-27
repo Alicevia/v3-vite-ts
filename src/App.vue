@@ -9,7 +9,7 @@
           <n-message-provider>
             <AppGlobalSetting>
               <Suspense>
-                <router-view />
+                <router-view></router-view>
               </Suspense>
             </AppGlobalSetting>
           </n-message-provider>
